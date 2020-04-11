@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="RobofestApp.Pages.FieldSelectionPage"
+             Title="Select a Field!">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="judgePositive" TargetType="Button">
+                <Setter Property="BorderColor" Value="DodgerBlue"/>
+                <Setter Property="BackgroundColor" Value="#ffffff"/>
+                <Setter Property="TextColor" Value="DodgerBlue"/>
+                <Setter Property="BorderWidth" Value="2"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="CornerRadius" Value="5"/>
+            </Style>
+            <Style x:Key="judgePositiveSelected" TargetType="Button">
+                <Setter Property="BorderColor" Value="DodgerBlue"/>
+                <Setter Property="BackgroundColor" Value="DodgerBlue"/>
+                <Setter Property="TextColor" Value="#ffffff"/>
+                <Setter Property="BorderWidth" Value="2"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="CornerRadius" Value="5"/>
+            </Style>
+            <Style x:Key="judgeNegative" TargetType="Button">
+                <Setter Property="BorderColor" Value="Red"/>
+                <Setter Property="BackgroundColor" Value="#ffffff"/>
+                <Setter Property="TextColor" Value="Red"/>
+                <Setter Property="BorderWidth" Value="2"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="CornerRadius" Value="5"/>
+            </Style>
+            <Style x:Key="judgeNegativeSelected" TargetType="Button">
+                <Setter Property="BorderColor" Value="Red"/>
+                <Setter Property="BackgroundColor" Value="Red"/>
+                <Setter Property="TextColor" Value="#ffffff"/>
+                <Setter Property="BorderWidth" Value="2"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="CornerRadius" Value="5"/>
+            </Style>
+            <Style x:Key="judgeSuccess" TargetType="Button">
+                <Setter Property="BorderColor" Value="MediumSeaGreen"/>
+                <Setter Property="BackgroundColor" Value="MediumSeaGreen"/>
+                <Setter Property="TextColor" Value="#ffffff"/>
+                <Setter Property="BorderWidth" Value="2"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="CornerRadius" Value="5"/>
+            </Style>
+            <Style x:Key="judgeDanger" TargetType="Button">
+                <Setter Property="BorderColor" Value="Tomato"/>
+                <Setter Property="BackgroundColor" Value="Tomato"/>
+                <Setter Property="TextColor" Value="#ffffff"/>
+                <Setter Property="BorderWidth" Value="2"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="CornerRadius" Value="5"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid Margin="10,20,10,20"
+                  VerticalOptions="Start">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="75" />
+                    <RowDefinition Height="75" />
+                    <RowDefinition Height="75" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Button Style="{StaticResource judgePositive}"
+                        Text="Field 1 (1001-1)"
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        x:Name="f1select"
+                        Clicked="ChangeField"/>
+                <Button Style="{StaticResource judgePositive}"
+                        Text="Field 2 (1001-1)"
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        x:Name="f2select"
+                        Clicked="ChangeField"/>
+                <Button Style="{StaticResource judgePositive}"
+                        Text="Field 3 (1001-1)"
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        x:Name="f3select"
+                        Clicked="ChangeField"/>
+                <Button Style="{StaticResource judgePositive}"
+                        Text="Field 4 (1001-1)"
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        x:Name="f4select"
+                        Clicked="ChangeField"/>
+                <Button Style="{StaticResource judgePositive}"
+                        Text="Field 5 (1001-1)"
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        x:Name="f5select"
+                        Clicked="ChangeField"/>
+                <Button Style="{StaticResource judgePositive}"
+                        Text="Field 6 (1001-1)"
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        x:Name="f6select"
+                        Clicked="ChangeField"/>
+            </Grid>
+            <Grid Margin="10,20,10,10"
+                  VerticalOptions="Start"
+                  HorizontalOptions="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120" />
+                    <ColumnDefinition Width="120" />
+                </Grid.ColumnDefinitions>
+                <Button Style="{StaticResource judgePositive}"
+                        Text="Round 1"
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        x:Name="r1select"
+                        Clicked="ChangeRound"/>
+                <Button Style="{StaticResource judgePositive}"
+                        Text="Round 2"
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        x:Name="r2select"
+                        Clicked="ChangeRound"/>
+            </Grid>
+            <Grid Margin="10,10,10,0"
+                  VerticalOptions="Start"
+                  HorizontalOptions="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="80" />
+                </Grid.ColumnDefinitions>
+                <CheckBox Grid.Row="0"
+                          Grid.Column="0"
+                          Color="Blue"
+                          ScaleX="1.5"
+                          ScaleY="1.5"
+                          IsChecked="True"
+                          x:Name="usableCheckbox"
+                          CheckedChanged="usableCheckbox_CheckedChanged"/>
+                <Label Text="Usable?"
+                        Grid.Row="0"
+                        Grid.Column="1"
+                       VerticalTextAlignment="Center"
+                       FontSize="Large"/>
+            </Grid>
+            <Grid Margin="10,0,10,10"
+                  VerticalOptions="Start"
+                  HorizontalOptions="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="80" />
+                </Grid.ColumnDefinitions>
+                <CheckBox Grid.Row="0"
+                          Grid.Column="0"
+                          Color="Blue"
+                          ScaleX="1.5"
+                          ScaleY="1.5"
+                          IsChecked="False"
+                          x:Name="rerunCheckbox"
+                          CheckedChanged="rerunCheckbox_CheckedChanged"/>
+                <Label Text="Rerun?"
+                        Grid.Row="0"
+                        Grid.Column="1"
+                       VerticalTextAlignment="Center"
+                       FontSize="Large"/>
+            </Grid>
+            <Button Style="{StaticResource judgeSuccess}"
+                    Text="Next"
+                    Clicked="NextPage"
+                    VerticalOptions="End"
+                    Margin="10,0,10,0"
+                    IsEnabled="False"
+                    x:Name="NextPageButton"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

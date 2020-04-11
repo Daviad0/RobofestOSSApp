@@ -1,0 +1,395 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             mc:Ignorable="d"
+             x:Class="RobofestApp.MainPage"
+             Title="Field 1 (0:00)"
+             ios:Page.UseSafeArea="True"
+             NavigationPage.HasBackButton="False">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="judgePositive" TargetType="Button">
+                <Setter Property="BorderColor" Value="DodgerBlue"/>
+                <Setter Property="BackgroundColor" Value="#ffffff"/>
+                <Setter Property="TextColor" Value="DodgerBlue"/>
+                <Setter Property="BorderWidth" Value="2"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="CornerRadius" Value="5"/>
+            </Style>
+            <Style x:Key="judgePositiveSelected" TargetType="Button">
+                <Setter Property="BorderColor" Value="DodgerBlue"/>
+                <Setter Property="BackgroundColor" Value="DodgerBlue"/>
+                <Setter Property="TextColor" Value="#ffffff"/>
+                <Setter Property="BorderWidth" Value="2"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="CornerRadius" Value="5"/>
+            </Style>
+            <Style x:Key="judgeNegative" TargetType="Button">
+                <Setter Property="BorderColor" Value="Red"/>
+                <Setter Property="BackgroundColor" Value="#ffffff"/>
+                <Setter Property="TextColor" Value="Red"/>
+                <Setter Property="BorderWidth" Value="2"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="CornerRadius" Value="5"/>
+            </Style>
+            <Style x:Key="judgeNegativeSelected" TargetType="Button">
+                <Setter Property="BorderColor" Value="Red"/>
+                <Setter Property="BackgroundColor" Value="Red"/>
+                <Setter Property="TextColor" Value="#ffffff"/>
+                <Setter Property="BorderWidth" Value="2"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="CornerRadius" Value="5"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ScrollView>
+        <StackLayout Margin="10,10,10,10">
+            <Label Text="Total: 0"
+                   x:Name="TotalScoreLabel"/>
+            <!-- Place new controls here -->
+            <Grid Margin="0,0,0,20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="50" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label Text="Bottle 1" 
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       Grid.Row="0"
+                       Grid.Column="0" />
+                <Button Text="Option 1"
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Style="{StaticResource judgePositiveSelected}"
+                        x:Name="bot1_opt1"
+                        Clicked="bot1_Clicked"/>
+                <Button Text="Option 2"
+                        Grid.Row="0"
+                        Grid.Column="2"
+                        Style="{StaticResource judgePositive}"
+                        x:Name="bot1_opt2"
+                        Clicked="bot1_Clicked"/>
+                <Button Text="Option 3"
+                        Grid.Row="0"
+                        Grid.Column="3"
+                        Style="{StaticResource judgePositive}"
+                        x:Name="bot1_opt3"
+                        Clicked="bot1_Clicked"/>
+                <Label Text="Bottle 2" 
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       Grid.Row="1"
+                       Grid.Column="0" />
+                <Button Text="Option 1"
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Style="{StaticResource judgePositiveSelected}"
+                        x:Name="bot2_opt1"
+                        Clicked="bot2_Clicked"/>
+                <Button Text="Option 2"
+                        Grid.Row="1"
+                        Grid.Column="2"
+                        Style="{StaticResource judgePositive}"
+                        x:Name="bot2_opt2"
+                        Clicked="bot2_Clicked"/>
+                <Button Text="Option 3"
+                        Grid.Row="1"
+                        Grid.Column="3"
+                        Style="{StaticResource judgePositive}"
+                        x:Name="bot2_opt3"
+                        Clicked="bot2_Clicked"/>
+                <Label Text="Bottle 3" 
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       Grid.Row="2"
+                       Grid.Column="0" />
+                <Button Text="Option 1"
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        Style="{StaticResource judgePositiveSelected}"
+                        x:Name="bot3_opt1"
+                        Clicked="bot3_Clicked"/>
+                <Button Text="Option 2"
+                        Grid.Row="2"
+                        Grid.Column="2"
+                        Style="{StaticResource judgePositive}"
+                        x:Name="bot3_opt2"
+                        Clicked="bot3_Clicked"/>
+                <Button Text="Option 3"
+                        Grid.Row="2"
+                        Grid.Column="3"
+                        Style="{StaticResource judgePositive}"
+                        x:Name="bot3_opt3"
+                        Clicked="bot3_Clicked"/>
+                <Label Text="Bottle 4" 
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       Grid.Row="3"
+                       Grid.Column="0" />
+                <Button Text="Option 1"
+                        Grid.Row="3"
+                        Grid.Column="1"
+                        Style="{StaticResource judgePositiveSelected}"
+                        x:Name="bot4_opt1"
+                        Clicked="bot4_Clicked"/>
+                <Button Text="Option 2"
+                        Grid.Row="3"
+                        Grid.Column="2"
+                        Style="{StaticResource judgePositive}"
+                        x:Name="bot4_opt2"
+                        Clicked="bot4_Clicked"/>
+                <Button Text="Option 3"
+                        Grid.Row="3"
+                        Grid.Column="3"
+                        Style="{StaticResource judgePositive}"
+                        x:Name="bot4_opt3"
+                        Clicked="bot4_Clicked"/>
+                <Label Text="Bottle 5" 
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       Grid.Row="4"
+                       Grid.Column="0" />
+                <Button Text="Option 1"
+                        Grid.Row="4"
+                        Grid.Column="1"
+                        Style="{StaticResource judgeNegativeSelected}"
+                        x:Name="bot5_opt1"
+                        Clicked="bot5_Clicked"/>
+                <Button Text="Option 2"
+                        Grid.Row="4"
+                        Grid.Column="2"
+                        Style="{StaticResource judgeNegative}"
+                        x:Name="bot5_opt2"
+                        Clicked="bot5_Clicked"/>
+                <Button Text="Option 3"
+                        Grid.Row="4"
+                        Grid.Column="3"
+                        Style="{StaticResource judgeNegative}"
+                        x:Name="bot5_opt3"
+                        Clicked="bot5_Clicked"/>
+
+            </Grid>
+            <Label Text="Bottle Score: 0" 
+                   HorizontalOptions="Center"
+                   x:Name="currentBottleScore"
+                   TextColor="Gray"/>
+            <Grid Margin="0,20,0,20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="50" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label Text="Endgame" 
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       Grid.Row="0"
+                       Grid.Column="0" />
+                <Button Text="Option 1"
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Style="{StaticResource judgePositiveSelected}"
+                        x:Name="end_opt1"
+                        Clicked="end_Clicked"/>
+                <Button Text="Option 2"
+                        Grid.Row="0"
+                        Grid.Column="2"
+                        Style="{StaticResource judgePositive}"
+                        x:Name="end_opt2"
+                        Clicked="end_Clicked"/>
+                <Label Text="Robot Intact" 
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       Grid.Row="1"
+                       Grid.Column="0" />
+                <Button Text="Option 1"
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Style="{StaticResource judgePositiveSelected}"
+                        x:Name="rin_opt1"
+                        Clicked="rin_Clicked"/>
+                <Button Text="Option 2"
+                        Grid.Row="1"
+                        Grid.Column="2"
+                        Style="{StaticResource judgePositive}"
+                        x:Name="rin_opt2"
+                        Clicked="rin_Clicked"/>
+                <Label Text="Full Reset" 
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       Grid.Row="2"
+                       Grid.Column="0" />
+                <Button Text="Option 1"
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        Style="{StaticResource judgeNegativeSelected}"
+                        x:Name="fre_opt1"
+                        Clicked="fre_Clicked"/>
+                <Button Text="Option 2"
+                        Grid.Row="2"
+                        Grid.Column="2"
+                        Style="{StaticResource judgeNegative}"
+                        x:Name="fre_opt2"
+                        Clicked="fre_Clicked"/>
+            </Grid>
+            <Label Text="General Score: 0" 
+                   HorizontalOptions="Center"
+                   x:Name="currentGeneralScore"
+                   TextColor="Gray"/>
+            <Grid Margin="50,20,50,20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="50" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Label Text="White Balls"
+                       Grid.Row="0"
+                       Grid.Column="0"
+                       VerticalTextAlignment="Center"
+                       HorizontalTextAlignment="Center"/>
+                <Button Text="-"
+                       Style="{StaticResource judgePositive}"
+                        Grid.Row="0"
+                       Grid.Column="1"
+                        WidthRequest="60"
+                        FontSize="Large"
+                        x:Name="whiteBallsDown"
+                        Clicked="whiteBalls"
+                        IsEnabled="False"/>
+                <Label Text="0"
+                       x:Name="whiteBallsLabel"
+                       Grid.Row="0"
+                       Grid.Column="2"
+                       VerticalTextAlignment="Center"
+                       Margin="10,0,10,0"
+                       FontSize="Large"/>
+                <Button Text="+"
+                       Style="{StaticResource judgePositive}"
+                        Grid.Row="0"
+                       Grid.Column="3"
+                        WidthRequest="60"
+                        FontSize="Large"
+                        x:Name="whiteBallsUp"
+                        Clicked="whiteBalls"/>
+                
+                <Label Text="Orange Balls"
+                       Grid.Row="1"
+                       Grid.Column="0"
+                       VerticalTextAlignment="Center"
+                       HorizontalTextAlignment="Center"/>
+                <Button Text="-"
+                       Style="{StaticResource judgePositive}"
+                        Grid.Row="1"
+                       Grid.Column="1"
+                        WidthRequest="60"
+                        FontSize="Large"
+                        x:Name="orangeBallsDown"
+                        Clicked="orangeBalls"
+                        IsEnabled="False"/>
+                <Label Text="0"
+                       x:Name="orangeBallsLabel"
+                       Grid.Row="1"
+                       Grid.Column="2"
+                       VerticalTextAlignment="Center"
+                       Margin="10,0,10,0"
+                       FontSize="Large"/>
+                <Button Text="+"
+                       Style="{StaticResource judgePositive}"
+                        Grid.Row="1"
+                       Grid.Column="3"
+                        WidthRequest="60"
+                        FontSize="Large"
+                        x:Name="orangeBallsUp"
+                        Clicked="orangeBalls"/>
+
+                <Label Text="Invalid Balls"
+                       Grid.Row="2"
+                       Grid.Column="0"
+                       VerticalTextAlignment="Center"
+                       HorizontalTextAlignment="Center"/>
+                <Button Text="-"
+                       Style="{StaticResource judgeNegative}"
+                        Grid.Row="2"
+                       Grid.Column="1"
+                        WidthRequest="60"
+                        FontSize="Large"
+                        x:Name="invalidBallsDown"
+                        Clicked="invalidBalls"
+                        IsEnabled="False"/>
+                <Label Text="0"
+                       x:Name="invalidBallsLabel"
+                       Grid.Row="2"
+                       Grid.Column="2"
+                       VerticalTextAlignment="Center"
+                       Margin="10,0,10,0"
+                       FontSize="Large"/>
+                <Button Text="+"
+                       Style="{StaticResource judgeNegative}"
+                        Grid.Row="2"
+                       Grid.Column="3"
+                        WidthRequest="60"
+                        FontSize="Large"
+                        x:Name="invalidBallsUp"
+                        Clicked="invalidBalls"/>
+
+                <Label Text="Balls Off Table"
+                       Grid.Row="3"
+                       Grid.Column="0"
+                       VerticalTextAlignment="Center"
+                       HorizontalTextAlignment="Center"/>
+                <Button Text="-"
+                       Style="{StaticResource judgePositive}"
+                        Grid.Row="3"
+                       Grid.Column="1"
+                        WidthRequest="60"
+                        FontSize="Large"
+                        x:Name="offBallsDown"
+                        Clicked="offBalls"
+                        IsEnabled="False"/>
+                <Label Text="0"
+                       x:Name="offBallsLabel"
+                       Grid.Row="3"
+                       Grid.Column="2"
+                       VerticalTextAlignment="Center"
+                       Margin="10,0,10,0"
+                       FontSize="Large"/>
+                <Button Text="+"
+                       Style="{StaticResource judgePositive}"
+                        Grid.Row="3"
+                       Grid.Column="3"
+                        WidthRequest="60"
+                        FontSize="Large"
+                        x:Name="offBallsUp"
+                        Clicked="offBalls"/>
+            </Grid>
+            <Label Text="Ball Score: 0" 
+                   HorizontalOptions="Center"
+                   x:Name="currentBallScore"
+                   TextColor="Gray"/>
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>
