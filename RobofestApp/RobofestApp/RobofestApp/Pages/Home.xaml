@@ -3,16 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
              mc:Ignorable="d"
              x:Class="RobofestApp.Pages.Home"
-            NavigationPage.HasNavigationBar="False">
+            ios:Page.UseSafeArea="True"
+            NavigationPage.HasNavigationBar="False"
+            CurrentPageChanged="CurrentPageHasChanged">
   <!--Pages can be added as references or inline-->
-    <ContentPage Title="Rankings">
+    <ContentPage Title="Rankings" ios:Page.UseSafeArea="True" ClassId="rank">
         <StackLayout>
             <Button Text="Refresh"
                     Clicked="Button_Clicked"
                     
-                    Margin="50,13,50,10"
+                    Margin="50,20,50,10"
                     HorizontalOptions="Center"
                     x:Name="TypeRefresh"/>
             <ListView x:Name="ThisWontWork"
@@ -74,13 +77,70 @@
             </ListView>
         </StackLayout>
     </ContentPage>
-    <ContentPage Title="Judges" >
+    <ContentPage Title="Judges" ios:Page.UseSafeArea="True" ClassId="judges">
         <Label Text="Judges"/>
     </ContentPage>
-    <ContentPage Title="Schedule" >
-        <Label Text="Schedule"/>
+    <ContentPage Title="Schedule" ios:Page.UseSafeArea="True" ClassId="schedule">
+        <StackLayout>
+            <ListView IsPullToRefreshEnabled="False"
+                      ItemsSource="{Binding Items}"
+                      CachingStrategy="RecycleElement"
+                      RowHeight="60"
+                      SelectionMode="None">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Margin="8">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Text="{Binding OrderNum,StringFormat='#{0}'}"
+                                       HorizontalOptions="End"
+                                       VerticalOptions="Center"
+                                       Grid.Row="0"
+                                       Grid.Column="0"
+                                       FontSize="Medium"
+                                       Margin="10,0,15,0"
+                                       FontAttributes="Bold"
+                                       TextColor="{Binding CompletedColor}"/>
+                                <Grid Grid.Row="0" Grid.Column="1" HorizontalOptions="Start">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text="{Binding TeamNumber}"
+                                           FontAttributes="Bold"
+                                           Grid.Row="0"
+                                           Grid.Column="0"/>
+                                    <Label Text="{Binding Round, StringFormat='Round {0}'}"
+                                           Grid.Row="1"
+                                           Grid.Column="0"/>
+                                </Grid>
+                                <BoxView Color="{Binding Color}"
+                                        CornerRadius="3"
+                                        VerticalOptions="Center"
+                                         Grid.Row="0"
+                                         Grid.Column="2"
+                                         HorizontalOptions="End"
+                                         WidthRequest="25"
+                                         HeightRequest="25"
+                                         Margin="0,0,10,0"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
     </ContentPage>
-    <ContentPage Title="Settings" >
+    <ContentPage Title="Settings" ios:Page.UseSafeArea="True" ClassId="settings">
         <Label Text="Settings"/>
     </ContentPage>
 </TabbedPage>

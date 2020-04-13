@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="RobofestApp.Pages.LoginPage"
+             NavigationPage.HasNavigationBar="True"
+             NavigationPage.HasBackButton="False"
+             Title="Login to ROSS">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="Center">
+            <StackLayout VerticalOptions="Center" x:Name="LoginPending">
+                <Label Text="Login" x:Name="StatusLabel" FontSize="60" Margin="23, 0, 0, 0"/>
+                <Entry Placeholder="Username"
+                       x:Name="LoginUsername"
+                       IsSpellCheckEnabled="False"
+                       IsTextPredictionEnabled="False" Margin="20,10,20,0" TextChanged="Form_TextChanged"/>
+                <Entry Placeholder="Password"
+                       x:Name="LoginPassword"
+                       IsPassword="True"
+                       IsSpellCheckEnabled="False"
+                       IsTextPredictionEnabled="False" Margin="20,0,20,0" TextChanged="Form_TextChanged"/>
+                <Button
+                    Clicked="Button_Clicked"
+                    Text="Submit" Margin="20,10,20,40"/>
+            </StackLayout>
+            <StackLayout VerticalOptions="Center" IsVisible="False" x:Name="LoginAccepted">
+                <Label Text="Logging You In..." Margin="23, 10,0,0"/>
+                <ProgressBar ProgressColor="DodgerBlue" Progress="0.1" Margin="20, 10, 20, 0" x:Name="ProgressLogin"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
