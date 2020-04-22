@@ -24,7 +24,7 @@ namespace RobofestApp.Pages
 
         private void Button_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new NotReadyPage());
+            Navigation.PushAsync(new NotReadyPage(FieldLoaded));
         }
 
         private void Button_Clicked_1(object sender, EventArgs e)
@@ -40,7 +40,7 @@ namespace RobofestApp.Pages
         private void MasterServerConnection()
         {
             var ip = "localhost";
-            hubConnection = new HubConnectionBuilder().WithUrl($"http://192.168.86.59/RobofestWTECore/scoreHub").Build();
+            hubConnection = new HubConnectionBuilder().WithUrl($"http://192.168.86.59/scoreHub").Build();
 
             hubConnection.On<bool>("changeJudgeLock", (locked) =>
             {
@@ -72,7 +72,7 @@ namespace RobofestApp.Pages
             }
             catch (Exception ex)
             {
-                Error.Text = "Yes";
+                Error.Text = "Failed";
             }
         }
     }

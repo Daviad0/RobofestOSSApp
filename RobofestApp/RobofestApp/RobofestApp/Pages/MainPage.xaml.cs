@@ -22,6 +22,7 @@ namespace RobofestApp
         private static string Data = "";
         private static int TotalScore = 0;
         private static int CurrentField;
+        private static bool ReviewingScores = false;
         public MainPage(int Field)
         {
             CurrentField = Field;
@@ -284,7 +285,7 @@ namespace RobofestApp
         {
             if(sender == whiteBallsUp)
             {
-                whiteBallsDown.IsEnabled = true;
+                whiteBallsUp.IsEnabled = true;
                 if(BallPoints[0] < 2)
                 {
                     BallPoints[0] += 1;
@@ -412,7 +413,7 @@ namespace RobofestApp
         {
             Data = BottleScores[0].ToString() + "/" + BottleScores[1].ToString() + "/" + BottleScores[2].ToString() + "/" + BottleScores[3].ToString() + "/" + BottleScores[4].ToString() + "^" + (BallPoints[0]*15).ToString() + "/" + (BallPoints[1]*18).ToString() + "/" + (BallPoints[2]*-3).ToString() + "/" + BallPoints[3].ToString() + "^" + GeneralPoints[0].ToString() + "/" + GeneralPoints[2].ToString() + "^" + GeneralPoints[2].ToString();
             TotalScore = BottleScores[0] + BottleScores[1] + BottleScores[2] + BottleScores[3] + BottleScores[4] + (BallPoints[0] * 15) + (BallPoints[1] * 18) + (BallPoints[2] * -3) + BallPoints[3] + GeneralPoints[0] + GeneralPoints[1] + GeneralPoints[2];
-            TotalScoreLabel.Text = TotalScore.ToString();
+            TotalScoreLabel.Text = "Total Score: "+TotalScore.ToString();
             await SendScore();
             
         }
@@ -424,7 +425,7 @@ namespace RobofestApp
         private void MasterServerConnection()
         {
             var ip = "localhost";
-            hubConnection = new HubConnectionBuilder().WithUrl($"http://192.168.86.59/RobofestWTECore/scoreHub").Build();
+            hubConnection = new HubConnectionBuilder().WithUrl($"http://192.168.86.59/scoreHub").Build();
 
             hubConnection.On<int, int, string, int>("changeGlobalTimer", (minutes, seconds, message, status) =>
             {
@@ -433,7 +434,7 @@ namespace RobofestApp
                 {
                     secondsview = "0" + secondsview;
                 }
-                Title = "Field " + CurrentField.ToString() +" (" + minutes.ToString() +":" + secondsview.ToString() + ")";
+                Title = "Field " + CurrentField.ToString() +": Scoring (" + minutes.ToString() +":" + secondsview.ToString() + ")";
             });
 
         }
@@ -445,12 +446,11 @@ namespace RobofestApp
             }
             catch (Exception ex)
             {
-                currentBallScore.Text = "Nope";
+
             }
         }
         async Task SendScore()
         {
-            currentBallScore.Text = "Working?";
             try
             {
                 await hubConnection.InvokeAsync("initField", CurrentField, 5, TotalScore, "1001-1", true, false, Data);
@@ -459,6 +459,91 @@ namespace RobofestApp
             {
 
             }
+        }
+
+        private void SubmitScores_Clicked(object sender, EventArgs e)
+        {
+            var converter = new ColorTypeConverter();
+            SubmitScores.TextColor = (Color)converter.ConvertFromInvariantString("#ffffff");
+            ReviewingScores = true;
+            fre_opt1.IsEnabled = false;
+            fre_opt2.IsEnabled = false;
+            rin_opt1.IsEnabled = false;
+            rin_opt2.IsEnabled = false;
+            end_opt1.IsEnabled = false;
+            end_opt2.IsEnabled = false;
+            bot5_opt1.IsEnabled = false;
+            bot5_opt2.IsEnabled = false;
+            bot5_opt3.IsEnabled = false;
+            bot4_opt1.IsEnabled = false;
+            bot4_opt2.IsEnabled = false;
+            bot4_opt3.IsEnabled = false;
+            bot3_opt1.IsEnabled = false;
+            bot3_opt2.IsEnabled = false;
+            bot3_opt3.IsEnabled = false;
+            bot2_opt1.IsEnabled = false;
+            bot2_opt2.IsEnabled = false;
+            bot2_opt3.IsEnabled = false;
+            bot1_opt1.IsEnabled = false;
+            bot1_opt2.IsEnabled = false;
+            bot1_opt3.IsEnabled = false;
+            whiteBallsUp.IsEnabled = false;
+            whiteBallsDown.IsEnabled = false;
+            orangeBallsUp.IsEnabled = false;
+            orangeBallsDown.IsEnabled = false;
+            invalidBallsUp.IsEnabled = false;
+            invalidBallsDown.IsEnabled = false;
+            offBallsUp.IsEnabled = false;
+            offBallsDown.IsEnabled = false;
+            scrollViewForm.ScrollToAsync(0, 0, true);
+            Title = "Field 1: Reviewing";
+            SubmitScores.BackgroundColor = (Color)converter.ConvertFromInvariantString("#15d656");
+            SubmitScores.IsEnabled = false;
+            SubmitScores.Text = "Submit to Database";
+            EditScores.IsVisible = true;
+
+        }
+
+        private void EditScores_Clicked(object sender, EventArgs e)
+        {
+            var converter = new ColorTypeConverter();
+            ReviewingScores = false;
+            fre_opt1.IsEnabled = true;
+            fre_opt2.IsEnabled = true;
+            rin_opt1.IsEnabled = true;
+            rin_opt2.IsEnabled = true;
+            end_opt1.IsEnabled = true;
+            end_opt2.IsEnabled = true;
+            bot5_opt1.IsEnabled = true;
+            bot5_opt2.IsEnabled = true;
+            bot5_opt3.IsEnabled = true;
+            bot4_opt1.IsEnabled = true;
+            bot4_opt2.IsEnabled = true;
+            bot4_opt3.IsEnabled = true;
+            bot3_opt1.IsEnabled = true;
+            bot3_opt2.IsEnabled = true;
+            bot3_opt3.IsEnabled = true;
+            bot2_opt1.IsEnabled = true;
+            bot2_opt2.IsEnabled = true;
+            bot2_opt3.IsEnabled = true;
+            bot1_opt1.IsEnabled = true;
+            bot1_opt2.IsEnabled = true;
+            bot1_opt3.IsEnabled = true;
+            whiteBallsUp.IsEnabled = true;
+            whiteBallsDown.IsEnabled = true;
+            orangeBallsUp.IsEnabled = true;
+            orangeBallsDown.IsEnabled = true;
+            invalidBallsUp.IsEnabled = true;
+            invalidBallsDown.IsEnabled = true;
+            offBallsUp.IsEnabled = true;
+            offBallsDown.IsEnabled = true;
+            scrollViewForm.ScrollToAsync(0, 0, true);
+            Title = "Field " + CurrentField.ToString() + ": Scoring (0:00)";
+            SubmitScores.Text = "Review Scores";
+            SubmitScores.TextColor = (Color)converter.ConvertFromInvariantString("#15d656");
+            SubmitScores.BackgroundColor = (Color)converter.ConvertFromInvariantString("Color.Transparent");
+            EditScores.IsVisible = false;
+            SubmitScores.IsEnabled = true;
         }
     }
 }

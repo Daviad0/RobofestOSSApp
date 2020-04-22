@@ -1,10 +1,8 @@
-﻿using Microsoft.AspNetCore.SignalR.Client;
+﻿using Microsoft.AppCenter.Analytics;
+using Microsoft.AspNetCore.SignalR.Client;
+using RobofestApp.Scripts;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -33,11 +31,18 @@ namespace RobofestApp.Pages
         {
             var converter = new ColorTypeConverter();
             var ip = "localhost";
-            hubConnection = new HubConnectionBuilder().WithUrl($"http://192.168.86.59/RobofestWTECore/scoreHub").Build();
+            hubConnection = new HubConnectionBuilder().WithUrl($"http://192.168.86.59/scoreHub").Build();
 
-            hubConnection.On<string>("authSucc", (token) =>
+            hubConnection.On<string, string>("authSucc", async (token, session) =>
             {
-                Navigation.PushAsync(new Home());
+                Analytics.TrackEvent("User " + LoginUsername.Text + " logged in to app. Token: " + token);
+                await ProgressLogin.ProgressTo(0.85, 1000, Easing.Linear);
+                var TokenStorageItem = new TokenStorageMaster();
+                var returnValue = TokenStorageItem.StoreToken(token, session);
+                await ProgressLogin.ProgressTo(0.95, 1000, Easing.Linear);
+                Analytics.TrackEvent(returnValue);
+                await ProgressLogin.ProgressTo(1, 1000, Easing.Linear);
+                await Navigation.PushAsync(new Home());
             });
             hubConnection.On("authFail", () =>
             {
@@ -52,7 +57,7 @@ namespace RobofestApp.Pages
             });
             hubConnection.On<int>("authProgress", (progress) =>
             {
-                ProgressLogin.ProgressTo(progress/100, 1000, Easing.Linear);
+                ProgressLogin.ProgressTo(progress / 100, 1000, Easing.Linear);
             });
         }
         async Task SignalRConnect()
@@ -66,6 +71,7 @@ namespace RobofestApp.Pages
 
             }
         }
+
         async Task SendScore()
         {
             try

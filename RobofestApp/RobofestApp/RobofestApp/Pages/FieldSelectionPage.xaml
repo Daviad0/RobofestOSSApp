@@ -5,7 +5,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="RobofestApp.Pages.FieldSelectionPage"
-             Title="Select a Field!">
+             Title="Select a Field!"
+             NavigationPage.HasBackButton="False">
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style x:Key="judgePositive" TargetType="Button">
@@ -41,8 +42,8 @@
                 <Setter Property="CornerRadius" Value="5"/>
             </Style>
             <Style x:Key="judgeSuccess" TargetType="Button">
-                <Setter Property="BorderColor" Value="MediumSeaGreen"/>
-                <Setter Property="BackgroundColor" Value="MediumSeaGreen"/>
+                <Setter Property="BorderColor" Value="#15d656"/>
+                <Setter Property="BackgroundColor" Value="#15d656"/>
                 <Setter Property="TextColor" Value="#ffffff"/>
                 <Setter Property="BorderWidth" Value="2"/>
                 <Setter Property="FontAttributes" Value="Bold"/>
@@ -72,40 +73,40 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <Button Style="{StaticResource judgePositive}"
-                        Text="Field 1 (1001-1)"
+                        Text="Field 1 (???)"
                         Grid.Row="0"
                         Grid.Column="0"
-                        x:Name="f1select"
+                        x:Name="f1select" IsEnabled="False"
                         Clicked="ChangeField"/>
                 <Button Style="{StaticResource judgePositive}"
-                        Text="Field 2 (1001-1)"
+                        Text="Field 2 (???)"
                         Grid.Row="0"
                         Grid.Column="1"
-                        x:Name="f2select"
+                        x:Name="f2select" IsEnabled="False"
                         Clicked="ChangeField"/>
                 <Button Style="{StaticResource judgePositive}"
-                        Text="Field 3 (1001-1)"
+                        Text="Field 3 (???)"
                         Grid.Row="1"
                         Grid.Column="0"
-                        x:Name="f3select"
+                        x:Name="f3select" IsEnabled="False"
                         Clicked="ChangeField"/>
                 <Button Style="{StaticResource judgePositive}"
-                        Text="Field 4 (1001-1)"
+                        Text="Field 4 (???)"
                         Grid.Row="1"
                         Grid.Column="1"
-                        x:Name="f4select"
+                        x:Name="f4select" IsEnabled="False"
                         Clicked="ChangeField"/>
                 <Button Style="{StaticResource judgePositive}"
-                        Text="Field 5 (1001-1)"
+                        Text="Field 5 (???)"
                         Grid.Row="2"
                         Grid.Column="0"
-                        x:Name="f5select"
+                        x:Name="f5select" IsEnabled="False"
                         Clicked="ChangeField"/>
                 <Button Style="{StaticResource judgePositive}"
-                        Text="Field 6 (1001-1)"
+                        Text="Field 6 (???)"
                         Grid.Row="2"
                         Grid.Column="1"
-                        x:Name="f6select"
+                        x:Name="f6select" IsEnabled="False"
                         Clicked="ChangeField"/>
             </Grid>
             <Grid Margin="10,20,10,10"
@@ -149,7 +150,7 @@
                           IsChecked="True"
                           x:Name="usableCheckbox"
                           CheckedChanged="usableCheckbox_CheckedChanged"/>
-                <Label Text="Usable?"
+                <Label Text="Usable"
                         Grid.Row="0"
                         Grid.Column="1"
                        VerticalTextAlignment="Center"
@@ -173,7 +174,7 @@
                           IsChecked="False"
                           x:Name="rerunCheckbox"
                           CheckedChanged="rerunCheckbox_CheckedChanged"/>
-                <Label Text="Rerun?"
+                <Label Text="Rerun"
                         Grid.Row="0"
                         Grid.Column="1"
                        VerticalTextAlignment="Center"

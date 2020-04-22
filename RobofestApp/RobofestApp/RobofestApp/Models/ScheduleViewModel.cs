@@ -32,7 +32,7 @@ namespace RobofestApp.Models
             var json = "";
             using (var client = new HttpClient(new HttpClientHandler { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate }))
             {
-                client.BaseAddress = new Uri("http://192.168.86.59/RobofestWTECore/team/");
+                client.BaseAddress = new Uri("http://192.168.86.59/team/");
                 HttpResponseMessage response = client.GetAsync("RawSchedule").Result;
                 response.EnsureSuccessStatusCode();
                 json = response.Content.ReadAsStringAsync().Result;

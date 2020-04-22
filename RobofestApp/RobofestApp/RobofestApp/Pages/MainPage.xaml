@@ -43,14 +43,33 @@
                 <Setter Property="FontAttributes" Value="Bold"/>
                 <Setter Property="CornerRadius" Value="5"/>
             </Style>
+            <Style x:Key="judgeSuccess" TargetType="Button">
+                <Setter Property="BorderColor" Value="#15d656"/>
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+                <Setter Property="TextColor" Value="#15d656"/>
+                <Setter Property="BorderWidth" Value="2"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="CornerRadius" Value="5"/>
+            </Style>
+            <Style x:Key="judgeDanger" TargetType="Button">
+                <Setter Property="BorderColor" Value="#e0260d"/>
+                <Setter Property="BackgroundColor" Value="#e0260d"/>
+                <Setter Property="TextColor" Value="#ffffff"/>
+                <Setter Property="BorderWidth" Value="2"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="CornerRadius" Value="5"/>
+            </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
-    <ScrollView>
+    <ScrollView x:Name="scrollViewForm">
         <StackLayout Margin="10,10,10,10">
             <Label Text="Total: 0"
-                   x:Name="TotalScoreLabel"/>
+                   x:Name="TotalScoreLabel"
+                   HorizontalTextAlignment="Center"
+                   FontSize="Large"/>
+            <BoxView HeightRequest="2" WidthRequest="100" Margin="10,10,10,0" BackgroundColor="LightGray"/>
             <!-- Place new controls here -->
-            <Grid Margin="0,0,0,20">
+            <Grid Margin="0,10,0,20">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50" />
                     <RowDefinition Height="50" />
@@ -184,7 +203,8 @@
             <Label Text="Bottle Score: 0" 
                    HorizontalOptions="Center"
                    x:Name="currentBottleScore"
-                   TextColor="Gray"/>
+                   TextColor="Gray" FontSize="Medium"/>
+            <BoxView HeightRequest="2" WidthRequest="100" Margin="10,10,10,0" BackgroundColor="LightGray"/>
             <Grid Margin="0,20,0,20">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50" />
@@ -251,7 +271,8 @@
             <Label Text="General Score: 0" 
                    HorizontalOptions="Center"
                    x:Name="currentGeneralScore"
-                   TextColor="Gray"/>
+                   TextColor="Gray" FontSize="Medium"/>
+            <BoxView HeightRequest="2" WidthRequest="100" Margin="10,10,10,0" BackgroundColor="LightGray"/>
             <Grid Margin="50,20,50,20">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50" />
@@ -388,7 +409,10 @@
             <Label Text="Ball Score: 0" 
                    HorizontalOptions="Center"
                    x:Name="currentBallScore"
-                   TextColor="Gray"/>
+                   TextColor="Gray" FontSize="Medium"/>
+            <BoxView HeightRequest="2" WidthRequest="100" Margin="10,10,10,0" BackgroundColor="LightGray"/>
+            <Button Text="Review Scores" x:Name="SubmitScores" Clicked="SubmitScores_Clicked" Style="{StaticResource judgeSuccess}" Margin="0,10,0,0"/>
+            <Button Text="Edit Scores" x:Name="EditScores" Clicked="EditScores_Clicked" Style="{StaticResource judgeNegativeSelected}" Margin="0,0,0,20" IsVisible="False"/>
         </StackLayout>
     </ScrollView>
 

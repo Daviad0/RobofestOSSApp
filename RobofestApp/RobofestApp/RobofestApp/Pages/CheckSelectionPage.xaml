@@ -40,8 +40,8 @@
                 <Setter Property="CornerRadius" Value="5"/>
             </Style>
             <Style x:Key="judgeSuccess" TargetType="Button">
-                <Setter Property="BorderColor" Value="MediumSeaGreen"/>
-                <Setter Property="BackgroundColor" Value="MediumSeaGreen"/>
+                <Setter Property="BorderColor" Value="#15d656"/>
+                <Setter Property="BackgroundColor" Value="#15d656"/>
                 <Setter Property="TextColor" Value="#ffffff"/>
                 <Setter Property="BorderWidth" Value="2"/>
                 <Setter Property="FontAttributes" Value="Bold"/>
