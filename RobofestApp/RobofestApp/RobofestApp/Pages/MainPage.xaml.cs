@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Microsoft.AspNetCore.SignalR.Client;
+using RobofestApp.Pages;
 
 namespace RobofestApp
 {
@@ -440,13 +441,14 @@ namespace RobofestApp
         }
         async Task SignalRConnect()
         {
+            Console.WriteLine("Tried");
             try
             {
                 await hubConnection.StartAsync();
             }
             catch (Exception ex)
             {
-
+                Console.WriteLine(ex.ToString());
             }
         }
         async Task SendScore()
@@ -463,44 +465,51 @@ namespace RobofestApp
 
         private void SubmitScores_Clicked(object sender, EventArgs e)
         {
-            var converter = new ColorTypeConverter();
-            SubmitScores.TextColor = (Color)converter.ConvertFromInvariantString("#ffffff");
-            ReviewingScores = true;
-            fre_opt1.IsEnabled = false;
-            fre_opt2.IsEnabled = false;
-            rin_opt1.IsEnabled = false;
-            rin_opt2.IsEnabled = false;
-            end_opt1.IsEnabled = false;
-            end_opt2.IsEnabled = false;
-            bot5_opt1.IsEnabled = false;
-            bot5_opt2.IsEnabled = false;
-            bot5_opt3.IsEnabled = false;
-            bot4_opt1.IsEnabled = false;
-            bot4_opt2.IsEnabled = false;
-            bot4_opt3.IsEnabled = false;
-            bot3_opt1.IsEnabled = false;
-            bot3_opt2.IsEnabled = false;
-            bot3_opt3.IsEnabled = false;
-            bot2_opt1.IsEnabled = false;
-            bot2_opt2.IsEnabled = false;
-            bot2_opt3.IsEnabled = false;
-            bot1_opt1.IsEnabled = false;
-            bot1_opt2.IsEnabled = false;
-            bot1_opt3.IsEnabled = false;
-            whiteBallsUp.IsEnabled = false;
-            whiteBallsDown.IsEnabled = false;
-            orangeBallsUp.IsEnabled = false;
-            orangeBallsDown.IsEnabled = false;
-            invalidBallsUp.IsEnabled = false;
-            invalidBallsDown.IsEnabled = false;
-            offBallsUp.IsEnabled = false;
-            offBallsDown.IsEnabled = false;
-            scrollViewForm.ScrollToAsync(0, 0, true);
-            Title = "Field 1: Reviewing";
-            SubmitScores.BackgroundColor = (Color)converter.ConvertFromInvariantString("#15d656");
-            SubmitScores.IsEnabled = false;
-            SubmitScores.Text = "Submit to Database";
-            EditScores.IsVisible = true;
+            if (ReviewingScores == false)
+            { 
+                var converter = new ColorTypeConverter();
+                SubmitScores.TextColor = (Color)converter.ConvertFromInvariantString("#ffffff");
+                ReviewingScores = true;
+                fre_opt1.IsEnabled = false;
+                fre_opt2.IsEnabled = false;
+                rin_opt1.IsEnabled = false;
+                rin_opt2.IsEnabled = false;
+                end_opt1.IsEnabled = false;
+                end_opt2.IsEnabled = false;
+                bot5_opt1.IsEnabled = false;
+                bot5_opt2.IsEnabled = false;
+                bot5_opt3.IsEnabled = false;
+                bot4_opt1.IsEnabled = false;
+                bot4_opt2.IsEnabled = false;
+                bot4_opt3.IsEnabled = false;
+                bot3_opt1.IsEnabled = false;
+                bot3_opt2.IsEnabled = false;
+                bot3_opt3.IsEnabled = false;
+                bot2_opt1.IsEnabled = false;
+                bot2_opt2.IsEnabled = false;
+                bot2_opt3.IsEnabled = false;
+                bot1_opt1.IsEnabled = false;
+                bot1_opt2.IsEnabled = false;
+                bot1_opt3.IsEnabled = false;
+                whiteBallsUp.IsEnabled = false;
+                whiteBallsDown.IsEnabled = false;
+                orangeBallsUp.IsEnabled = false;
+                orangeBallsDown.IsEnabled = false;
+                invalidBallsUp.IsEnabled = false;
+                invalidBallsDown.IsEnabled = false;
+                offBallsUp.IsEnabled = false;
+                offBallsDown.IsEnabled = false;
+                scrollViewForm.ScrollToAsync(0, 0, true);
+                Title = "Field 1: Reviewing";
+                SubmitScores.BackgroundColor = (Color)converter.ConvertFromInvariantString("#15d656");
+                //SubmitScores.IsEnabled = false;
+                SubmitScores.Text = "Submit to Database";
+                EditScores.IsVisible = true;
+            }
+            else
+            {
+                Navigation.PushAsync(new Home());
+            }
 
         }
 
@@ -543,7 +552,7 @@ namespace RobofestApp
             SubmitScores.TextColor = (Color)converter.ConvertFromInvariantString("#15d656");
             SubmitScores.BackgroundColor = (Color)converter.ConvertFromInvariantString("Color.Transparent");
             EditScores.IsVisible = false;
-            SubmitScores.IsEnabled = true;
+            //SubmitScores.IsEnabled = true;
         }
     }
 }

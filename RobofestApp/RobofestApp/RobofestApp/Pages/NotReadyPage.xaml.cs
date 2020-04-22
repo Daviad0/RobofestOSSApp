@@ -55,6 +55,7 @@ namespace RobofestApp
         }
         async Task SignalRConnect()
         {
+            Console.WriteLine("Trying to connect.");
             try
             {
                 await hubConnection.StartAsync();
@@ -62,7 +63,7 @@ namespace RobofestApp
             }
             catch (Exception ex)
             {
-                
+                Console.WriteLine(ex.ToString());
             }
         }
         async Task SendFieldStatus()

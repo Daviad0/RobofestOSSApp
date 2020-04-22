@@ -15,12 +15,12 @@
                 <Entry Placeholder="Username"
                        x:Name="LoginUsername"
                        IsSpellCheckEnabled="False"
-                       IsTextPredictionEnabled="False" Margin="20,10,20,0" TextChanged="Form_TextChanged"/>
+                       IsTextPredictionEnabled="False" Margin="20,10,20,0" TextChanged="Form_TextChanged" TextColor="DodgerBlue" />
                 <Entry Placeholder="Password"
                        x:Name="LoginPassword"
                        IsPassword="True"
                        IsSpellCheckEnabled="False"
-                       IsTextPredictionEnabled="False" Margin="20,0,20,0" TextChanged="Form_TextChanged"/>
+                       IsTextPredictionEnabled="False" Margin="20,0,20,0" TextChanged="Form_TextChanged" TextColor="DodgerBlue"/>
                 <Button
                     Clicked="Button_Clicked"
                     Text="Submit" Margin="20,10,20,40"/>

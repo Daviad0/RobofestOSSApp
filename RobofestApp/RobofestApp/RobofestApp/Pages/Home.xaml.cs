@@ -78,6 +78,7 @@ namespace RobofestApp.Pages
 
             hubConnection.On("tokenAuthSucc", () =>
             {
+                
                 Navigation.PushAsync(new FieldSelectionPage());
             });
             hubConnection.On<string, string>("tokenAuthExpired", (correct, wrong) =>
