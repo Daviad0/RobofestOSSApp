@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Text;
 using System.Net;
 using System.Net.Http;
+using RestSharp;
 
 namespace RobofestApp.Models
 {
@@ -32,10 +33,12 @@ namespace RobofestApp.Models
             var json = "";
             using (var client = new HttpClient(new HttpClientHandler { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate }))
             {
+                client.Timeout = TimeSpan.FromMinutes(30);
                 client.BaseAddress = new Uri("http://192.168.86.59/team/");
                 HttpResponseMessage response = client.GetAsync("RawLeaderboard").Result;
                 response.EnsureSuccessStatusCode();
                 json = response.Content.ReadAsStringAsync().Result;
+
             }
             var ranklist = JsonConvert.DeserializeObject<List<ReturnRank>>(json);
 

@@ -27,7 +27,7 @@ namespace RobofestApp
         private static bool ConnectionTested = false;
         public MainPage(int Field)
         {
-            ReviewingScores = true;
+            ReviewingScores = false;
             ConnectionTested = false;
             CurrentField = Field;
             SetUpSignalR();

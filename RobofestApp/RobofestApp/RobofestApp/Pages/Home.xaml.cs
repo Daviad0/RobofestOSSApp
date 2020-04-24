@@ -31,7 +31,6 @@ namespace RobofestApp.Pages
             ThisWontWork.ItemsSource = data;*/
             var getThisToken = new TokenStorageMaster();
             userToken = getThisToken.GetToken();
-            BindingContext = new RankViewModel();
             SetUpSignalR();
         }
 

@@ -10,6 +10,7 @@
             NavigationPage.HasNavigationBar="False"
             CurrentPageChanged="CurrentPageHasChanged">
   <!--Pages can be added as references or inline-->
+    
     <ContentPage Title="Rankings" ios:Page.UseSafeArea="True" ClassId="rank">
         <StackLayout>
             <Button Text="Refresh"
@@ -77,15 +78,6 @@
             </ListView>
         </StackLayout>
     </ContentPage>
-    <ContentPage Title="Judges" ios:Page.UseSafeArea="True" ClassId="judges">
-        <StackLayout>
-            <Label Text="Judges" x:Name="JudgeError"/>
-            <Button x:Name="GoToJudge"
-                Clicked="GoToJudge_Clicked"
-                    Text="Start Judging!"/>
-        </StackLayout>
-        
-    </ContentPage>
     <ContentPage Title="Schedule" ios:Page.UseSafeArea="True" ClassId="schedule">
         <StackLayout>
             <ListView IsPullToRefreshEnabled="False"
@@ -146,6 +138,16 @@
             </ListView>
         </StackLayout>
     </ContentPage>
+    <ContentPage Title="Judges" ios:Page.UseSafeArea="True" ClassId="judges">
+        <StackLayout>
+            <Label Text="Judges" x:Name="JudgeError"/>
+            <Button x:Name="GoToJudge"
+                Clicked="GoToJudge_Clicked"
+                    Text="Start Judging!"/>
+        </StackLayout>
+        
+    </ContentPage>
+    
     <ContentPage Title="Settings" ios:Page.UseSafeArea="True" ClassId="settings">
         <Label Text="Settings"/>
     </ContentPage>
