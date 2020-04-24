@@ -14,7 +14,7 @@ namespace RobofestApp
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NotReadyPage : ContentPage
     {
-        HubConnection hubConnection;
+        static HubConnection hubConnection;
         private static int Score;
         private static int FieldLoaded;
         public NotReadyPage(int Field)
@@ -31,7 +31,20 @@ namespace RobofestApp
         }
         private void Button_Clicked(object sender, EventArgs e)
         {
+            try
+            {
+                var existingPages = Navigation.NavigationStack.ToList();
+                foreach (var page in existingPages)
+                {
+                    Navigation.RemovePage(page);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
             Navigation.PushAsync(new ReadyPage(1));
+
         }
         async private void SetUpSignalR()
         {
@@ -42,29 +55,55 @@ namespace RobofestApp
         private void MasterServerConnection()
         {
             var ip = "localhost";
-            hubConnection = new HubConnectionBuilder().WithUrl($"http://192.168.86.59/scoreHub").Build();
+
+            if(hubConnection == null || hubConnection.State != HubConnectionState.Connected)
+            {
+                hubConnection = new HubConnectionBuilder().WithUrl($"http://192.168.86.59/scoreHub").Build();
+            }
+
 
             hubConnection.On<bool>("changeJudgeLock", (locked) =>
             {
                 if (locked == false)
                 {
+                    try
+                    {
+                        var existingPages = Navigation.NavigationStack.ToList();
+                        foreach (var page in existingPages)
+                        {
+                            Navigation.RemovePage(page);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.ToString());
+                    }
                     Navigation.PushAsync(new MainPage(FieldLoaded));
+                    //hubConnection.StopAsync();
                 }
             });
 
         }
         async Task SignalRConnect()
         {
-            Console.WriteLine("Trying to connect.");
-            try
+            if (hubConnection == null || hubConnection.State != HubConnectionState.Connected)
             {
-                await hubConnection.StartAsync();
+                Console.WriteLine("Previous Connection Terminated...");
+                try
+                {
+                    await hubConnection.StartAsync();
 
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                }
             }
-            catch (Exception ex)
+            else
             {
-                Console.WriteLine(ex.ToString());
+                Console.WriteLine("Already Connected!");
             }
+            
         }
         async Task SendFieldStatus()
         {

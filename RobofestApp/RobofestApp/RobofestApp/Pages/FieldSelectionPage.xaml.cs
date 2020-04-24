@@ -13,7 +13,7 @@ namespace RobofestApp.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class FieldSelectionPage : ContentPage
     {
-        HubConnection hubConnection;
+        static HubConnection hubConnection;
         private static int FieldNum = 0;
         private static int Round = 0;
         private static bool Rerun = false;
@@ -32,6 +32,19 @@ namespace RobofestApp.Pages
         private void NextPage(object sender, EventArgs e)
         {
             Navigation.PushAsync(new CheckSelectionPage(1));
+            try
+            {
+                var existingPages = Navigation.NavigationStack.ToList();
+                foreach (var page in existingPages)
+                {
+                    Navigation.RemovePage(page);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+           
         }
         private void ChangeField(object sender, EventArgs e)
         {
@@ -187,7 +200,10 @@ namespace RobofestApp.Pages
         private void MasterServerConnection()
         {
             var ip = "localhost";
-            hubConnection = new HubConnectionBuilder().WithUrl($"http://192.168.86.59/scoreHub").Build();
+            if (hubConnection == null || hubConnection.State != HubConnectionState.Connected)
+            {
+                hubConnection = new HubConnectionBuilder().WithUrl($"http://192.168.86.59/scoreHub").Build();
+            }
 
             hubConnection.On<int[], string[], int[], bool[], bool[]>("fieldDefaults", (teamids, teamnumbers, rounds, reruns, tests) =>
             {
@@ -221,18 +237,21 @@ namespace RobofestApp.Pages
                     Tests[index] = item;
                     index++;
                 }
-                f1select.Text = "Field 1 (" + TeamNumbers[0] + ")";
-                f2select.Text = "Field 2 (" + TeamNumbers[1] + ")";
-                f3select.Text = "Field 3 (" + TeamNumbers[2] + ")";
-                f4select.Text = "Field 4 (" + TeamNumbers[3] + ")";
-                f5select.Text = "Field 5 (" + TeamNumbers[4] + ")";
-                f6select.Text = "Field 6 (" + TeamNumbers[5] + ")";
-                f1select.IsEnabled = true;
-                f2select.IsEnabled = true;
-                f3select.IsEnabled = true;
-                f4select.IsEnabled = true;
-                f5select.IsEnabled = true;
-                f6select.IsEnabled = true;
+                Device.BeginInvokeOnMainThread(() => {
+                    f1select.Text = "Field 1 (" + TeamNumbers[0] + ")";
+                    f2select.Text = "Field 2 (" + TeamNumbers[1] + ")";
+                    f3select.Text = "Field 3 (" + TeamNumbers[2] + ")";
+                    f4select.Text = "Field 4 (" + TeamNumbers[3] + ")";
+                    f5select.Text = "Field 5 (" + TeamNumbers[4] + ")";
+                    f6select.Text = "Field 6 (" + TeamNumbers[5] + ")";
+                    f1select.IsEnabled = true;
+                    f2select.IsEnabled = true;
+                    f3select.IsEnabled = true;
+                    f4select.IsEnabled = true;
+                    f5select.IsEnabled = true;
+                    f6select.IsEnabled = true;
+                });
+                
             });
 
         }
@@ -260,13 +279,18 @@ namespace RobofestApp.Pages
         }
         async Task SignalRConnect()
         {
-            try
+            if (hubConnection == null || hubConnection.State != HubConnectionState.Connected)
             {
-                await hubConnection.StartAsync();
-            }
-            catch (Exception ex)
-            {
-                f1select.Text = "Connection failed";
+                Console.WriteLine("Previous Connection Terminated...");
+                try
+                {
+                    await hubConnection.StartAsync();
+
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                }
             }
         }
         async Task GetFields()

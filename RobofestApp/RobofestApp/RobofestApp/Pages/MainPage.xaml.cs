@@ -16,7 +16,7 @@ namespace RobofestApp
     [DesignTimeVisible(false)]
     public partial class MainPage : ContentPage
     {
-        HubConnection hubConnection;
+        static HubConnection hubConnection;
         private static int[] BottleScores = { 0, 0, 0, 0, 0 };
         private static int[] GeneralPoints = { 0, 0, 0 };
         private static int[] BallPoints = { 0, 0, 0, 0 };
@@ -24,11 +24,19 @@ namespace RobofestApp
         private static int TotalScore = 0;
         private static int CurrentField;
         private static bool ReviewingScores = false;
+        private static bool ConnectionTested = false;
         public MainPage(int Field)
         {
+            ReviewingScores = true;
+            ConnectionTested = false;
             CurrentField = Field;
             SetUpSignalR();
             InitializeComponent();
+            Array.Clear(BottleScores, 0, BottleScores.Length);
+            Array.Clear(GeneralPoints, 0, GeneralPoints.Length);
+            Array.Clear(BallPoints, 0, BallPoints.Length);
+            TotalScore = 0;
+            Data = "";
         }
         protected override void OnAppearing()
         {
@@ -426,7 +434,10 @@ namespace RobofestApp
         private void MasterServerConnection()
         {
             var ip = "localhost";
-            hubConnection = new HubConnectionBuilder().WithUrl($"http://192.168.86.59/scoreHub").Build();
+            if (hubConnection == null || hubConnection.State != HubConnectionState.Connected)
+            {
+                hubConnection = new HubConnectionBuilder().WithUrl($"http://192.168.86.59/scoreHub").Build();
+            }
 
             hubConnection.On<int, int, string, int>("changeGlobalTimer", (minutes, seconds, message, status) =>
             {
@@ -435,21 +446,58 @@ namespace RobofestApp
                 {
                     secondsview = "0" + secondsview;
                 }
-                Title = "Field " + CurrentField.ToString() +": Scoring (" + minutes.ToString() +":" + secondsview.ToString() + ")";
+                Device.BeginInvokeOnMainThread(() => {
+                    Title = "Field " + CurrentField.ToString() + ": Scoring (" + minutes.ToString() + ":" + secondsview.ToString() + ")";
+                });
+                
+            });
+            hubConnection.On("signalRConnected", () =>
+            {
+                ConnectionTested = true;
             });
 
         }
         async Task SignalRConnect()
         {
-            Console.WriteLine("Tried");
-            try
+            if (hubConnection == null || hubConnection.State != HubConnectionState.Connected)
             {
-                await hubConnection.StartAsync();
+                Console.WriteLine("Previous Connection Terminated...");
+                try
+                {
+                    await hubConnection.StartAsync();
+
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                }
             }
-            catch (Exception ex)
+            else
             {
-                Console.WriteLine(ex.ToString());
+                Console.WriteLine("Testing Connection");
+                await hubConnection.InvokeAsync("checkSignalRHub");
+                Device.StartTimer(TimeSpan.FromSeconds(3), () =>
+                {
+                    Console.WriteLine("Checking Connection...");
+                    if(ConnectionTested == true)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Did not recieve back, reconnecting...");
+                        ReconnectSignalR();
+                        return true;
+                    }
+                    
+                });
             }
+        }
+        async Task ReconnectSignalR()
+        {
+            hubConnection = new HubConnectionBuilder().WithUrl($"http://192.168.86.59/scoreHub").Build();
+            await hubConnection.StartAsync();
+            await hubConnection.InvokeAsync("checkSignalRHub");
         }
         async Task SendScore()
         {
@@ -509,6 +557,7 @@ namespace RobofestApp
             else
             {
                 Navigation.PushAsync(new Home());
+                //hubConnection.StopAsync();
             }
 
         }

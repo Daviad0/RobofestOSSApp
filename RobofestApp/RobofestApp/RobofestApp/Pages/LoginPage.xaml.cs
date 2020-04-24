@@ -43,6 +43,7 @@ namespace RobofestApp.Pages
                 Analytics.TrackEvent(returnValue);
                 await ProgressLogin.ProgressTo(1, 1000, Easing.Linear);
                 await Navigation.PushAsync(new Home());
+                await hubConnection.StopAsync();
             });
             hubConnection.On("authFail", () =>
             {
