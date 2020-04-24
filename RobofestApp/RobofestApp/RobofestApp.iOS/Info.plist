@@ -25,7 +25,7 @@
 	<key>CFBundleDisplayName</key>
 	<string>RobofestApp</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.RobofestOSS.RobofestApp</string>
+	<string>com.RobofestOSSService.RobofestApp</string>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
 	<key>UIUserInterfaceStyle</key>
