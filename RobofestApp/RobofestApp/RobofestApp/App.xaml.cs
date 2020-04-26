@@ -4,6 +4,7 @@ using Microsoft.AppCenter.Crashes;
 using RobofestApp.Pages;
 using System;
 using Xamarin.Forms;
+using Plugin.Iconize;
 using Xamarin.Forms.Xaml;
 
 namespace RobofestApp
@@ -13,7 +14,6 @@ namespace RobofestApp
         public App()
         {
             InitializeComponent();
-
             MainPage = new NavigationPage(new LoginPage());
         }
 

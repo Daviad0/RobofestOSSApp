@@ -16,6 +16,7 @@ namespace RobofestApp.Droid
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            Plugin.Iconize.Iconize.Init(Resource.Id.toolbar, Resource.Id.sliding_tabs);
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
