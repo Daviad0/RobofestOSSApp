@@ -6,6 +6,30 @@
              mc:Ignorable="d"
              x:Class="RobofestApp.App">
     <Application.Resources>
+        <ResourceDictionary>
+            <OnPlatform x:TypeArguments="x:String" 
+                x:Key="FontAwesomeBrands">
+                <On Platform="Android" 
+          Value="fa5brands.otf#Regular" />
+                <On Platform="iOS" 
+          Value="fa5brands-Regular" />
+            </OnPlatform>
 
+            <OnPlatform x:TypeArguments="x:String" 
+                x:Key="FontAwesomeSolid">
+                <On Platform="Android" 
+          Value="fa5solid.otf#Regular" />
+                <On Platform="iOS" 
+          Value="fa5solid-Solid" />
+            </OnPlatform>
+
+            <OnPlatform x:TypeArguments="x:String" 
+                x:Key="FontAwesomeRegular">
+                <On Platform="Android" 
+          Value="fa5regular.otf#Regular" />
+                <On Platform="iOS" 
+          Value="fa5regular-Regular" />
+            </OnPlatform>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

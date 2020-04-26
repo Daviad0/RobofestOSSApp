@@ -7,13 +7,15 @@ using System.Text;
 using System.Net;
 using System.Net.Http;
 using RestSharp;
+using System.Threading.Tasks;
 
 namespace RobofestApp.Models
 {
     public class RankViewModel : INotifyPropertyChanged
     {
 
-        private ObservableCollection<TeamRank> ranks;
+        private static ObservableCollection<TeamRank> ranks = new ObservableCollection<TeamRank>();
+        private static HttpClient client = new HttpClient(new HttpClientHandler { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate });
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -28,23 +30,26 @@ namespace RobofestApp.Models
         }
 
 
-        public RankViewModel()
+        public async Task Update()
         {
             var json = "";
-            using (var client = new HttpClient(new HttpClientHandler { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate }))
-            {
-                client.Timeout = TimeSpan.FromMinutes(30);
-                client.BaseAddress = new Uri("http://192.168.86.59/team/");
-                HttpResponseMessage response = client.GetAsync("RawLeaderboard").Result;
+            //using (var client = new HttpClient(new HttpClientHandler { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate }))
+            //{
+                client.DefaultRequestHeaders.ConnectionClose = true;
+                
+                //client.Timeout = TimeSpan.FromMinutes(20);
+                //client.BaseAddress = new Uri("http://192.168.86.59/team/");
+                HttpResponseMessage response = await client.GetAsync("http://192.168.86.59/team/RawLeaderboard").ConfigureAwait(false);
                 response.EnsureSuccessStatusCode();
                 json = response.Content.ReadAsStringAsync().Result;
 
-            }
+            //}
             var ranklist = JsonConvert.DeserializeObject<List<ReturnRank>>(json);
 
             // Here you can have your data form db or something else,
             // some data that you already have to put in the list
-            Ranks = new ObservableCollection<TeamRank>();
+            //Ranks = new ObservableCollection<TeamRank>();
+            //Ranks.Clear();
             foreach (var jsonranking in ranklist)
             {
                 var newrank = new TeamRank();

@@ -472,26 +472,6 @@ namespace RobofestApp
                     Console.WriteLine(ex.ToString());
                 }
             }
-            else
-            {
-                Console.WriteLine("Testing Connection");
-                await hubConnection.InvokeAsync("checkSignalRHub");
-                Device.StartTimer(TimeSpan.FromSeconds(3), () =>
-                {
-                    Console.WriteLine("Checking Connection...");
-                    if(ConnectionTested == true)
-                    {
-                        return false;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Did not recieve back, reconnecting...");
-                        ReconnectSignalR();
-                        return true;
-                    }
-                    
-                });
-            }
         }
         async Task ReconnectSignalR()
         {
@@ -553,6 +533,7 @@ namespace RobofestApp
                 //SubmitScores.IsEnabled = false;
                 SubmitScores.Text = "Submit to Database";
                 EditScores.IsVisible = true;
+                SubmitScores.Margin = new Thickness(0, 10, 0, 0);
             }
             else
             {
@@ -601,6 +582,7 @@ namespace RobofestApp
             SubmitScores.TextColor = (Color)converter.ConvertFromInvariantString("#15d656");
             SubmitScores.BackgroundColor = (Color)converter.ConvertFromInvariantString("Color.Transparent");
             EditScores.IsVisible = false;
+            SubmitScores.Margin = new Thickness(0, 10, 0, 20);
             //SubmitScores.IsEnabled = true;
         }
     }

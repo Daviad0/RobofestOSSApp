@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.SignalR.Client;
 using RobofestApp.Scripts;
 using System;
+using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -12,9 +14,11 @@ namespace RobofestApp.Pages
     public partial class LoginPage : ContentPage
     {
         HubConnection hubConnection;
+
         public LoginPage()
         {
             InitializeComponent();
+
             SetUpSignalR();
         }
 

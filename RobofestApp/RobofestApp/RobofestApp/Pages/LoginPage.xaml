@@ -24,6 +24,9 @@
                 <Button
                     Clicked="Button_Clicked"
                     Text="Submit" Margin="20,10,20,40"/>
+                <Label Text="&#xf26e;"
+                       FontFamily="{StaticResource FontAwesomeBrands}" />
+
             </StackLayout>
             <StackLayout VerticalOptions="Center" IsVisible="False" x:Name="LoginAccepted">
                 <Label Text="Logging You In..." Margin="23, 10,0,0"/>

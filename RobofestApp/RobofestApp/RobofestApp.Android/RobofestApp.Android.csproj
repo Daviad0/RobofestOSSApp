@@ -85,6 +85,9 @@
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
     <None Include="Properties\AndroidManifest.xml" />
+    <AndroidResource Include="Assets\fa5solid.otf" />
+    <AndroidResource Include="Assets\fa5brands.otf" />
+    <AndroidResource Include="Assets\fa5regular.otf" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Tabbar.xml" />

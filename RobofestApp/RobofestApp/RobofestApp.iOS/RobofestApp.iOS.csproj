@@ -73,6 +73,9 @@
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <BundleResource Include="Resources\fa5brands.otf" />
+    <BundleResource Include="Resources\fa5regular.otf" />
+    <BundleResource Include="Resources\fa5solid.otf" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />

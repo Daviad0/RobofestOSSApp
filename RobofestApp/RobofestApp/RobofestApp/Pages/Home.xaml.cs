@@ -18,12 +18,15 @@ namespace RobofestApp.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Home : TabbedPage
     {
-        HubConnection hubConnection;
+        static HubConnection hubConnection;
         private static ObservableCollection<string> data = new ObservableCollection<string>();
         private static TokenStorageModel userToken = new TokenStorageModel();
+        private RankViewModel rankViewModel = new RankViewModel();
+        private static bool ConnectionTested;
+
         public Home()
         {
-            
+            ConnectionTested = false;
             InitializeComponent();
             /*data.Add("1. 1001-1");
             data.Add("2. 1002-1");
@@ -36,21 +39,23 @@ namespace RobofestApp.Pages
 
         private void Button_Clicked(object sender, EventArgs e)
         {
-            BindingContext = new RankViewModel();
+            rankViewModel.Update();
+            BindingContext = rankViewModel;
         }
         private void TeamDetails(object sender, EventArgs e)
         {
             var button = sender as Button;
             Navigation.PushAsync(new TeamDetails(button.ClassId));
         }
-        private void CurrentPageHasChanged(object sender, EventArgs e)
+        private async void CurrentPageHasChanged(object sender, EventArgs e)
         {
             var tabbedPage = (TabbedPage)sender;
             if(tabbedPage.CurrentPage.ClassId != null)
             {
                 if (tabbedPage.CurrentPage.ClassId == "rank")
                 {
-                    BindingContext = new RankViewModel();
+                    await rankViewModel.Update();
+                    BindingContext = rankViewModel;
                 }
                 else if (tabbedPage.CurrentPage.ClassId == "schedule")
                 {
@@ -73,7 +78,10 @@ namespace RobofestApp.Pages
         {
             var converter = new ColorTypeConverter();
             var ip = "localhost";
-            hubConnection = new HubConnectionBuilder().WithUrl($"http://192.168.86.59/scoreHub").Build();
+            if (hubConnection == null || hubConnection.State != HubConnectionState.Connected)
+            {
+                hubConnection = new HubConnectionBuilder().WithUrl($"http://192.168.86.59/scoreHub").Build();
+            }
 
             hubConnection.On("tokenAuthSucc", () =>
             {
@@ -91,16 +99,26 @@ namespace RobofestApp.Pages
         }
         async Task SignalRConnect()
         {
-            try
+            if (hubConnection == null || hubConnection.State != HubConnectionState.Connected)
             {
-                await hubConnection.StartAsync();
-            }
-            catch (Exception ex)
-            {
+                Console.WriteLine("Previous Connection Terminated...");
+                try
+                {
+                    await hubConnection.StartAsync();
 
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                }
             }
         }
-
+        async Task ReconnectSignalR()
+        {
+            hubConnection = new HubConnectionBuilder().WithUrl($"http://192.168.86.59/scoreHub").Build();
+            await hubConnection.StartAsync();
+            await hubConnection.InvokeAsync("checkSignalRHub");
+        }
         async Task TryTokenLogin()
         {
             try
