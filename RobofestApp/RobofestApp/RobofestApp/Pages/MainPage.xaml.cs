@@ -534,6 +534,7 @@ namespace RobofestApp
                 SubmitScores.Text = "Submit to Database";
                 EditScores.IsVisible = true;
                 SubmitScores.Margin = new Thickness(0, 10, 0, 0);
+                ConfirmationForm.IsVisible = true;
             }
             else
             {
@@ -583,6 +584,7 @@ namespace RobofestApp
             SubmitScores.BackgroundColor = (Color)converter.ConvertFromInvariantString("Color.Transparent");
             EditScores.IsVisible = false;
             SubmitScores.Margin = new Thickness(0, 10, 0, 20);
+            ConfirmationForm.IsVisible = false;
             //SubmitScores.IsEnabled = true;
         }
     }
