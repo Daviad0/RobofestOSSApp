@@ -19,7 +19,6 @@ namespace RobofestApp.Pages
         public LoginPage()
         {
             InitializeComponent();
-
             SetUpSignalR();
         }
 

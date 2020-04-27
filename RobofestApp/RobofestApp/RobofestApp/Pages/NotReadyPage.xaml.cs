@@ -27,7 +27,6 @@ namespace RobofestApp
         {
             base.OnAppearing();
 
-            CurrentScore.Text = "CurrentScore: 5";
         }
         private void Button_Clicked(object sender, EventArgs e)
         {

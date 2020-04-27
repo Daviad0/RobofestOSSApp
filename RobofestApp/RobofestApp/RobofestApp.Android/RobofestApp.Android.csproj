@@ -84,9 +84,6 @@
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
     <None Include="Properties\AndroidManifest.xml" />
-    <AndroidResource Include="Assets\fa5solid.otf" />
-    <AndroidResource Include="Assets\fa5brands.otf" />
-    <AndroidResource Include="Assets\fa5regular.otf" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Tabbar.xml" />
@@ -107,13 +104,19 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\launcher_foreground.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Resources\drawable\" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\RobofestApp\RobofestApp.csproj">
       <Project>{2AEE40A0-AB73-44D4-8214-5C4A25B2058D}</Project>
       <Name>RobofestApp</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\download.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\checkmark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\nomark.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

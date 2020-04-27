@@ -78,6 +78,27 @@
     <BundleResource Include="Resources\fa5solid.otf" />
   </ItemGroup>
   <ItemGroup>
+    <ImageAsset Include="Assets.xcassets\checkmark.png.imageset\2bfe285e-c424-4a1a-9925-eb056a059193.sketchpad.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\checkmark.png.imageset\My Drawing (10).png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\download.jpg.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\download.jpg.imageset\download.jpg">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\checkmark.png.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\nomark.png.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\nomark.png.imageset\nomark.png">
+      <Visible>false</Visible>
+    </ImageAsset>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
       <Visible>false</Visible>

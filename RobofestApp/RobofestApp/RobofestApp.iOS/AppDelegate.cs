@@ -22,6 +22,10 @@ namespace RobofestApp.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
+            UIColor color = UIColor.FromRGB(10, 108, 245);
+            UINavigationBar.Appearance.SetTitleTextAttributes(new UITextAttributes() { TextColor = UIColor.White });
+            UINavigationBar.Appearance.TintColor = color;
+            UINavigationBar.Appearance.BarTintColor = color;
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
 

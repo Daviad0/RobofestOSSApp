@@ -117,14 +117,14 @@ namespace RobofestApp.Pages
         }
         async Task SendFieldStatus()
         {
-            Error.Text = "Trying";
             try
             {
                 await hubConnection.InvokeAsync("initField", FieldLoaded, 2, 0, "1000-1", true, false, "");
+                await hubConnection.InvokeAsync("judgeClientConnection");
             }
             catch (Exception ex)
             {
-                Error.Text = "Failed";
+
             }
         }
     }

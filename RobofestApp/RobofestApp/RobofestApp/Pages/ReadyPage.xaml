@@ -6,17 +6,13 @@
              mc:Ignorable="d"
              x:Class="RobofestApp.Pages.ReadyPage"
              NavigationPage.HasBackButton="False"
-             Title="You ARE READY">
+             Title="You ARE READY"
+             BackgroundColor="#0a6cf5">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand"
-                   x:Name="Error"/>
-            <Button Text="Not Ready!"
-                    Clicked="Button_Clicked"/>
-            <Button Text="Go!"
-                    Clicked="Button_Clicked_1"/>
+            <Image Source="checkmark.png" WidthRequest="250" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" Margin="0,20,0,0"/>
+            <Button Text="I'm Not Ready!"
+                    Clicked="Button_Clicked" VerticalOptions="EndAndExpand" BackgroundColor="White" Margin="10,0,10,10"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
