@@ -78,7 +78,7 @@
     <BundleResource Include="Resources\fa5solid.otf" />
   </ItemGroup>
   <ItemGroup>
-    <ImageAsset Include="Assets.xcassets\checkmark.png.imageset\2bfe285e-c424-4a1a-9925-eb056a059193.sketchpad.png">
+    <ImageAsset Include="Assets.xcassets\checkmark.png.imageset\checkmark.png">
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\checkmark.png.imageset\My Drawing (10).png">
