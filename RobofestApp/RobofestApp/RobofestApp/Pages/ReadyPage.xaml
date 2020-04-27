@@ -3,9 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
              mc:Ignorable="d"
              x:Class="RobofestApp.Pages.ReadyPage"
              NavigationPage.HasBackButton="False"
+             ios:Page.UseSafeArea="True"
              Title="You ARE READY"
              BackgroundColor="#0a6cf5">
     <ContentPage.Content>

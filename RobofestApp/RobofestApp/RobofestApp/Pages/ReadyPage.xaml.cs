@@ -70,7 +70,7 @@ namespace RobofestApp.Pages
             var ip = "localhost";
             if (hubConnection == null || hubConnection.State != HubConnectionState.Connected)
             {
-                hubConnection = new HubConnectionBuilder().WithUrl($"http://192.168.86.59/scoreHub").Build();
+                hubConnection = new HubConnectionBuilder().WithUrl($"http://robofest.daviadoprojects.codes/scoreHub").Build();
             }
 
             hubConnection.On<bool>("changeJudgeLock", (locked) =>

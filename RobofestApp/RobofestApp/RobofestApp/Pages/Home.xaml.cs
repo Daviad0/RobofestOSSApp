@@ -80,7 +80,7 @@ namespace RobofestApp.Pages
             var ip = "localhost";
             if (hubConnection == null || hubConnection.State != HubConnectionState.Connected)
             {
-                hubConnection = new HubConnectionBuilder().WithUrl($"http://192.168.86.59/scoreHub").Build();
+                hubConnection = new HubConnectionBuilder().WithUrl($"http://robofest.daviadoprojects.codes/scoreHub").Build();
             }
 
             hubConnection.On("tokenAuthSucc", () =>
@@ -115,7 +115,7 @@ namespace RobofestApp.Pages
         }
         async Task ReconnectSignalR()
         {
-            hubConnection = new HubConnectionBuilder().WithUrl($"http://192.168.86.59/scoreHub").Build();
+            hubConnection = new HubConnectionBuilder().WithUrl($"http://robofest.daviadoprojects.codes/scoreHub").Build();
             await hubConnection.StartAsync();
             await hubConnection.InvokeAsync("checkSignalRHub");
         }
