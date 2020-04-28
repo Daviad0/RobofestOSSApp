@@ -530,7 +530,7 @@ namespace RobofestApp
                 scrollViewForm.ScrollToAsync(0, 0, true);
                 Title = "Field 1: Reviewing";
                 SubmitScores.BackgroundColor = (Color)converter.ConvertFromInvariantString("#15d656");
-                //SubmitScores.IsEnabled = false;
+                SubmitScores.IsEnabled = false;
                 SubmitScores.Text = "Submit to Database";
                 EditScores.IsVisible = true;
                 SubmitScores.Margin = new Thickness(0, 10, 0, 0);
@@ -585,7 +585,17 @@ namespace RobofestApp
             EditScores.IsVisible = false;
             SubmitScores.Margin = new Thickness(0, 10, 0, 20);
             ConfirmationForm.IsVisible = false;
-            //SubmitScores.IsEnabled = true;
+            SubmitScores.IsEnabled = true;
+        }
+
+        private void judgeKey_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if(judgeKey.Text == "1234" && judgeInitials.Text != "" && studentInitials.Text != "")
+            {
+                judgeKey.BackgroundColor = new Color(12, 204, 19);
+                judgeKey.IsEnabled = false;
+                SubmitScores.IsEnabled = true;
+            }
         }
     }
 }
