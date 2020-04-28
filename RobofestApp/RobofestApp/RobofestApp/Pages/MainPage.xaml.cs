@@ -590,11 +590,16 @@ namespace RobofestApp
 
         private void judgeKey_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if(judgeKey.Text == "1234" && judgeInitials.Text != "" && studentInitials.Text != "")
+            var converter = new ColorTypeConverter();
+            if (judgeKey.Text.ToString() == "1234" && judgeInitials.Text != "" && studentInitials.Text != "")
             {
-                judgeKey.BackgroundColor = new Color(12, 204, 19);
-                judgeKey.IsEnabled = false;
+                judgeKey.TextColor = (Color)converter.ConvertFromInvariantString("Color.Green");
                 SubmitScores.IsEnabled = true;
+            }
+            else
+            {
+                judgeKey.TextColor = (Color)converter.ConvertFromInvariantString("Color.Red");
+                SubmitScores.IsEnabled = false;
             }
         }
     }

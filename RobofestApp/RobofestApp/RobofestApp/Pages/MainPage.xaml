@@ -65,10 +65,13 @@
         <StackLayout Margin="10,10,10,10">
             
             <StackLayout IsVisible="False" x:Name="ConfirmationForm">
-                <Label Text="Confirmation" FontSize="Large"/>
-                <Entry Placeholder="Judge Initials/Notes" HeightRequest="50" x:Name="judgeInitials"/>
-                <Entry Placeholder="Student Initials" HeightRequest="50" x:Name="studentInitials"/>
-                <Entry Placeholder="Judge Key" HeightRequest="50" IsPassword="True" x:Name="judgeKey" TextChanged="judgeKey_TextChanged"/>
+                <Label Text="Confirmation" FontSize="Large" HorizontalOptions="Center"/>
+                <Label Text="Judge Initials/Notes"/>
+                <Entry Placeholder="J.D" HeightRequest="50" x:Name="judgeInitials"/>
+                <Label Text="Student Initials"/>
+                <Entry Placeholder="D.R" HeightRequest="50" x:Name="studentInitials" MaxLength="10"/>
+                <Label Text="Judge Access Code"/>
+                <Entry Placeholder="1234" HeightRequest="50" IsPassword="True" x:Name="judgeKey" TextChanged="judgeKey_TextChanged" Keyboard="Numeric"/>
                 <BoxView HeightRequest="4" WidthRequest="100" Margin="0,10,0,0" BackgroundColor="LightGray"/>
                 <Label Text="Scoresheet" FontSize="Large" HorizontalOptions="Center"/>
             </StackLayout>
