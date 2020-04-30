@@ -57,6 +57,22 @@
                 <Setter Property="FontAttributes" Value="Bold"/>
                 <Setter Property="CornerRadius" Value="5"/>
             </Style>
+            <Style x:Key="judgeInvalid" TargetType="Button">
+                <Setter Property="BorderColor" Value="#f2ad2c"/>
+                <Setter Property="BackgroundColor" Value="#ffffff"/>
+                <Setter Property="TextColor" Value="#f2ad2c"/>
+                <Setter Property="BorderWidth" Value="2"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="CornerRadius" Value="5"/>
+            </Style>
+            <Style x:Key="judgeInvalidSelected" TargetType="Button">
+                <Setter Property="BorderColor" Value="#f2ad2c"/>
+                <Setter Property="BackgroundColor" Value="#f2ad2c"/>
+                <Setter Property="TextColor" Value="#ffffff"/>
+                <Setter Property="BorderWidth" Value="2"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="CornerRadius" Value="5"/>
+            </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
@@ -72,37 +88,37 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Button Style="{StaticResource judgePositive}"
+                <Button Style="{StaticResource judgeInvalid}"
                         Text="Field 1 (???)"
                         Grid.Row="0"
                         Grid.Column="0"
                         x:Name="f1select" IsEnabled="False"
                         Clicked="ChangeField"/>
-                <Button Style="{StaticResource judgePositive}"
+                <Button Style="{StaticResource judgeInvalid}"
                         Text="Field 2 (???)"
                         Grid.Row="0"
                         Grid.Column="1"
                         x:Name="f2select" IsEnabled="False"
                         Clicked="ChangeField"/>
-                <Button Style="{StaticResource judgePositive}"
+                <Button Style="{StaticResource judgeInvalid}"
                         Text="Field 3 (???)"
                         Grid.Row="1"
                         Grid.Column="0"
                         x:Name="f3select" IsEnabled="False"
                         Clicked="ChangeField"/>
-                <Button Style="{StaticResource judgePositive}"
+                <Button Style="{StaticResource judgeInvalid}"
                         Text="Field 4 (???)"
                         Grid.Row="1"
                         Grid.Column="1"
                         x:Name="f4select" IsEnabled="False"
                         Clicked="ChangeField"/>
-                <Button Style="{StaticResource judgePositive}"
+                <Button Style="{StaticResource judgeInvalid}"
                         Text="Field 5 (???)"
                         Grid.Row="2"
                         Grid.Column="0"
                         x:Name="f5select" IsEnabled="False"
                         Clicked="ChangeField"/>
-                <Button Style="{StaticResource judgePositive}"
+                <Button Style="{StaticResource judgeInvalid}"
                         Text="Field 6 (???)"
                         Grid.Row="2"
                         Grid.Column="1"
@@ -140,7 +156,7 @@
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="40" />
-                    <ColumnDefinition Width="80" />
+                    <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <CheckBox Grid.Row="0"
                           Grid.Column="0"
@@ -164,7 +180,7 @@
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="40" />
-                    <ColumnDefinition Width="80" />
+                    <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <CheckBox Grid.Row="0"
                           Grid.Column="0"
@@ -187,6 +203,7 @@
                     Margin="10,0,10,0"
                     IsEnabled="False"
                     x:Name="NextPageButton"/>
+            <Label Text="*This team doesn't exist! Submitting will not do anything!*" TextColor="Red" FontSize="Micro" IsVisible="False" x:Name="WarningNotValid"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
