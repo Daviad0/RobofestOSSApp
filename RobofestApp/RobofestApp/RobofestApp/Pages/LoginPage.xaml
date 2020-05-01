@@ -23,7 +23,10 @@
                        IsTextPredictionEnabled="False" Margin="20,0,20,0" TextChanged="Form_TextChanged" TextColor="DodgerBlue" HeightRequest="50"/>
                 <Button
                     Clicked="Button_Clicked"
-                    Text="Submit" Margin="20,10,20,40"/>
+                    Text="Submit" Margin="20,10,20,5"/>
+                <Button
+                    Clicked="autoLogin_Clicked"
+                    Text="Automatically Login" Margin="20,0,20,40" x:Name="autoLogin"/>
                 
             </StackLayout>
             <StackLayout VerticalOptions="Center" IsVisible="False" x:Name="LoginAccepted">

@@ -36,12 +36,6 @@ namespace RobofestApp.Pages
             userToken = getThisToken.GetToken();
             SetUpSignalR();
         }
-
-        private void Button_Clicked(object sender, EventArgs e)
-        {
-            rankViewModel.Update();
-            BindingContext = rankViewModel;
-        }
         private void TeamDetails(object sender, EventArgs e)
         {
             var button = sender as Button;
@@ -127,8 +121,21 @@ namespace RobofestApp.Pages
             }
             catch (Exception ex)
             {
-                JudgeError.Text = "Failed";
+
             }
+        }
+
+        private async void RankList_Refreshing(object sender, EventArgs e)
+        {
+            await rankViewModel.Update();
+            BindingContext = rankViewModel;
+            RankList.EndRefresh();
+        }
+
+        private void ScheduleList_Refreshing(object sender, EventArgs e)
+        {
+            BindingContext = new ScheduleViewModel();
+            ScheduleList.EndRefresh();
         }
     }
 }

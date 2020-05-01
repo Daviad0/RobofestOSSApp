@@ -36,7 +36,7 @@ namespace RobofestApp.Pages
             var converter = new ColorTypeConverter();
             var ip = "localhost";
             hubConnection = new HubConnectionBuilder().WithUrl($"http://robofest.daviadoprojects.codes/scoreHub").Build();
-
+            hubConnection.HandshakeTimeout = TimeSpan.FromSeconds(10);
             hubConnection.On<string, string>("authSucc", async (token, session) =>
             {
                 Analytics.TrackEvent("User " + LoginUsername.Text + " logged in to app. Token: " + token);
@@ -94,6 +94,13 @@ namespace RobofestApp.Pages
             var converter = new ColorTypeConverter();
             LoginPassword.TextColor = (Color)converter.ConvertFromInvariantString("Color.Black");
             LoginUsername.TextColor = (Color)converter.ConvertFromInvariantString("Color.Black");
+        }
+
+        private void autoLogin_Clicked(object sender, EventArgs e)
+        {
+            LoginUsername.Text = "testemail1@gmail.com";
+            LoginPassword.Text = "Robofestwte@1";
+            SendScore();
         }
     }
 }

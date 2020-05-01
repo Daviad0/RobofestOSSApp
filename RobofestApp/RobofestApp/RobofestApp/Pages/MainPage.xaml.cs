@@ -26,11 +26,13 @@ namespace RobofestApp
         private static int CurrentField;
         private static bool ReviewingScores = false;
         private static bool ConnectionTested = false;
-        public MainPage(int Field)
+        private static TeamDataStorage teamData = new TeamDataStorage();
+        public MainPage(TeamDataStorage getData)
         {
+            teamData = getData;
             ReviewingScores = false;
             ConnectionTested = false;
-            CurrentField = Field;
+            CurrentField = getData.Field;
             SetUpSignalR();
             InitializeComponent();
             Array.Clear(BottleScores, 0, BottleScores.Length);
@@ -505,7 +507,7 @@ namespace RobofestApp
             TeamMatchScore.Field = CurrentField;
             TeamMatchScore.FieldReset = GeneralPoints[2];
             TeamMatchScore.TotalScore = TotalScore;
-            Navigation.PushAsync(new CheckScore(TeamMatchScore));
+            Navigation.PushAsync(new CheckScore(TeamMatchScore, teamData));
         }
 
 

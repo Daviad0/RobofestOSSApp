@@ -5,7 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="RobofestApp.Pages.CheckScore"
-             Title="Review Scores">
+             Title="Field X Reviewing...">
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style x:Key="judgePositive" TargetType="Button">
@@ -188,7 +188,7 @@
                     <Label Text="J.I.D" Grid.Row="0" Grid.Column="1" Margin="5,0,0,0" FontAttributes="Bold"/>
                     <Entry Placeholder="1234" x:Name="judgeKey" Keyboard="Numeric" Grid.Row="1" Grid.Column="1" MaxLength="4" />
                 </Grid>
-                <Label Text="Student Initials" Margin="15,0,0,0" FontAttributes="Bold"/>
+                <Label Text="Student Initials (from 999-1)" Margin="15,0,0,0" FontAttributes="Bold" x:Name="studentInitialsLabel"/>
                 <Entry Placeholder="D.R" x:Name="studentInitials" MaxLength="10" Margin="10,0,10,0"/>
                 <Button Text="Submit Scores" x:Name="SubmitScores" Style="{StaticResource judgeSuccess}" Margin="10,10,10,20" FontSize="Large" Clicked="SubmitScores_Clicked"/>
             </StackLayout>

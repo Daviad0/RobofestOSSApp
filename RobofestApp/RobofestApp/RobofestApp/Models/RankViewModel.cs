@@ -49,7 +49,7 @@ namespace RobofestApp.Models
             // Here you can have your data form db or something else,
             // some data that you already have to put in the list
             //Ranks = new ObservableCollection<TeamRank>();
-            //Ranks.Clear();
+            Ranks.Clear();
             foreach (var jsonranking in ranklist)
             {
                 var newrank = new TeamRank();

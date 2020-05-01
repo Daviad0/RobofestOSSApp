@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.SignalR.Client;
+using RobofestApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,7 +34,15 @@ namespace RobofestApp.Pages
         }
         private void NextPage(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new CheckSelectionPage(1));
+            var pushteamdata = new TeamDataStorage();
+            pushteamdata.Field = FieldNum;
+            pushteamdata.Rerun = Rerun;
+            pushteamdata.TeamID = TeamIDs[SelectedIndex];
+            pushteamdata.TeamNumber = TeamNumbers[SelectedIndex];
+            pushteamdata.Test = Tests[SelectedIndex];
+            pushteamdata.Valid = Validates[SelectedIndex];
+            pushteamdata.Round = Round;
+            Navigation.PushAsync(new CheckSelectionPage(pushteamdata));
             try
             {
                 var existingPages = Navigation.NavigationStack.ToList();

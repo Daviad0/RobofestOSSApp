@@ -14,16 +14,39 @@ namespace RobofestApp.Pages
     public partial class CheckScore : ContentPage
     {
         private static TeamMatchStorage currentTeamMatch = new TeamMatchStorage();
-        public CheckScore(TeamMatchStorage teamMatch)
+        private static TeamDataStorage teamData = new TeamDataStorage();
+        public CheckScore(TeamMatchStorage teamMatch, TeamDataStorage getData)
         {
             InitializeComponent();
+            teamData = getData;
+            Title = "Field " + teamData.Field.ToString() + " Reviewing...";
             currentTeamMatch = teamMatch;
         }
         protected override void OnAppearing()
         {
+
             var converter = new ColorTypeConverter();
             base.OnAppearing();
-            totalScore.Text = "Total Score: " + currentTeamMatch.TotalScore.ToString();
+            studentInitialsLabel.Text = "Student Initials (from " + teamData.TeamNumber + ")";
+            if (teamData.Test)
+            {
+                SubmitScores.BackgroundColor = (Color)converter.ConvertFromInvariantString("Color.DeepPink");
+                SubmitScores.BorderColor = (Color)converter.ConvertFromInvariantString("Color.DeepPink");
+                SubmitScores.Text = "SUBMIT TEST";
+            }
+            else if (teamData.Valid)
+            {
+                SubmitScores.BackgroundColor = (Color)converter.ConvertFromInvariantString("#f2ad2c");
+                SubmitScores.BorderColor = (Color)converter.ConvertFromInvariantString("#f2ad2c");
+                SubmitScores.Text = "SUBMIT INVALID";
+            }
+            else if (teamData.Rerun)
+            {
+                SubmitScores.BackgroundColor = (Color)converter.ConvertFromInvariantString("Color.Green");
+                SubmitScores.BorderColor = (Color)converter.ConvertFromInvariantString("Color.Green");
+                SubmitScores.Text = "SUBMIT RERUN";
+            }
+            totalScore.Text = "Round " + teamData.Round.ToString() + " Score: " + currentTeamMatch.TotalScore.ToString();
             //BOTTLE SCORES
             bottleScore.Text = "Bottle Score: " + currentTeamMatch.BottleScores.Sum().ToString();
             bot1score.Text = currentTeamMatch.BottleScores[0].ToString();
