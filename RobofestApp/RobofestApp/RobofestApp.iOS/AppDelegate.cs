@@ -24,7 +24,7 @@ namespace RobofestApp.iOS
         {
             UIColor color = UIColor.FromRGB(10, 108, 245);
             UINavigationBar.Appearance.SetTitleTextAttributes(new UITextAttributes() { TextColor = UIColor.White });
-            UINavigationBar.Appearance.TintColor = color;
+            UINavigationBar.Appearance.TintColor = UIColor.White;
             UINavigationBar.Appearance.BarTintColor = color;
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());

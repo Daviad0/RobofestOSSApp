@@ -35,7 +35,7 @@ namespace RobofestApp.Models
             {
                 client.DefaultRequestHeaders.ConnectionClose = true;
                 client.Timeout = TimeSpan.FromSeconds(5);
-                client.BaseAddress = new Uri("http://192.168.86.59/team/");
+                client.BaseAddress = new Uri("http://robofest.daviadoprojects.codes/team/");
                 HttpResponseMessage response = client.GetAsync("RawSchedule").Result;
                 response.EnsureSuccessStatusCode();
                 json = response.Content.ReadAsStringAsync().Result;

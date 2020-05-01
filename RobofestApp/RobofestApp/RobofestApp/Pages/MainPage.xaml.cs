@@ -8,6 +8,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Microsoft.AspNetCore.SignalR.Client;
 using RobofestApp.Pages;
+using RobofestApp.Models;
 
 namespace RobofestApp
 {
@@ -25,11 +26,13 @@ namespace RobofestApp
         private static int CurrentField;
         private static bool ReviewingScores = false;
         private static bool ConnectionTested = false;
-        public MainPage(int Field)
+        private static TeamDataStorage teamData = new TeamDataStorage();
+        public MainPage(TeamDataStorage getData)
         {
+            teamData = getData;
             ReviewingScores = false;
             ConnectionTested = false;
-            CurrentField = Field;
+            CurrentField = getData.Field;
             SetUpSignalR();
             InitializeComponent();
             Array.Clear(BottleScores, 0, BottleScores.Length);
@@ -67,7 +70,7 @@ namespace RobofestApp
             }
             else if (sender == bot1_opt3)
             {
-                BottleScores[0] = 10;
+                BottleScores[0] = 11;
                 bot1_opt1.BackgroundColor = (Color)converter.ConvertFromInvariantString("#ffffff");
                 bot1_opt2.BackgroundColor = (Color)converter.ConvertFromInvariantString("#ffffff");
                 bot1_opt3.BackgroundColor = (Color)converter.ConvertFromInvariantString("Color.DodgerBlue");
@@ -93,7 +96,7 @@ namespace RobofestApp
             }
             else if (sender == bot2_opt2)
             {
-                BottleScores[1] = 4;
+                BottleScores[1] = 5;
                 bot2_opt1.BackgroundColor = (Color)converter.ConvertFromInvariantString("#ffffff");
                 bot2_opt2.BackgroundColor = (Color)converter.ConvertFromInvariantString("Color.DodgerBlue");
                 bot2_opt3.BackgroundColor = (Color)converter.ConvertFromInvariantString("#ffffff");
@@ -103,7 +106,7 @@ namespace RobofestApp
             }
             else if (sender == bot2_opt3)
             {
-                BottleScores[1] = 11;
+                BottleScores[1] = 13;
                 bot2_opt1.BackgroundColor = (Color)converter.ConvertFromInvariantString("#ffffff");
                 bot2_opt2.BackgroundColor = (Color)converter.ConvertFromInvariantString("#ffffff");
                 bot2_opt3.BackgroundColor = (Color)converter.ConvertFromInvariantString("Color.DodgerBlue");
@@ -129,7 +132,7 @@ namespace RobofestApp
             }
             else if (sender == bot3_opt2)
             {
-                BottleScores[2] = 4;
+                BottleScores[2] = 5;
                 bot3_opt1.BackgroundColor = (Color)converter.ConvertFromInvariantString("#ffffff");
                 bot3_opt2.BackgroundColor = (Color)converter.ConvertFromInvariantString("Color.DodgerBlue");
                 bot3_opt3.BackgroundColor = (Color)converter.ConvertFromInvariantString("#ffffff");
@@ -139,7 +142,7 @@ namespace RobofestApp
             }
             else if (sender == bot3_opt3)
             {
-                BottleScores[2] = 11;
+                BottleScores[2] = 13;
                 bot3_opt1.BackgroundColor = (Color)converter.ConvertFromInvariantString("#ffffff");
                 bot3_opt2.BackgroundColor = (Color)converter.ConvertFromInvariantString("#ffffff");
                 bot3_opt3.BackgroundColor = (Color)converter.ConvertFromInvariantString("Color.DodgerBlue");
@@ -175,7 +178,7 @@ namespace RobofestApp
             }
             else if (sender == bot4_opt3)
             {
-                BottleScores[3] = 10;
+                BottleScores[3] = 11;
                 bot4_opt1.BackgroundColor = (Color)converter.ConvertFromInvariantString("#ffffff");
                 bot4_opt2.BackgroundColor = (Color)converter.ConvertFromInvariantString("#ffffff");
                 bot4_opt3.BackgroundColor = (Color)converter.ConvertFromInvariantString("Color.DodgerBlue");
@@ -201,7 +204,7 @@ namespace RobofestApp
             }
             else if (sender == bot5_opt2)
             {
-                BottleScores[4] = -3;
+                BottleScores[4] = -2;
                 bot5_opt1.BackgroundColor = (Color)converter.ConvertFromInvariantString("#ffffff");
                 bot5_opt2.BackgroundColor = (Color)converter.ConvertFromInvariantString("Color.Red");
                 bot5_opt3.BackgroundColor = (Color)converter.ConvertFromInvariantString("#ffffff");
@@ -211,7 +214,7 @@ namespace RobofestApp
             }
             else if (sender == bot5_opt3)
             {
-                BottleScores[4] = -3;
+                BottleScores[4] = -2;
                 bot5_opt1.BackgroundColor = (Color)converter.ConvertFromInvariantString("#ffffff");
                 bot5_opt2.BackgroundColor = (Color)converter.ConvertFromInvariantString("#ffffff");
                 bot5_opt3.BackgroundColor = (Color)converter.ConvertFromInvariantString("Color.Red");
@@ -294,7 +297,7 @@ namespace RobofestApp
         {
             if(sender == whiteBallsUp)
             {
-                whiteBallsUp.IsEnabled = true;
+                whiteBallsDown.IsEnabled = true;
                 if(BallPoints[0] < 2)
                 {
                     BallPoints[0] += 1;
@@ -436,7 +439,7 @@ namespace RobofestApp
             var ip = "localhost";
             if (hubConnection == null || hubConnection.State != HubConnectionState.Connected)
             {
-                hubConnection = new HubConnectionBuilder().WithUrl($"http://192.168.86.59/scoreHub").Build();
+                hubConnection = new HubConnectionBuilder().WithUrl($"http://robofest.daviadoprojects.codes/scoreHub").Build();
             }
 
             hubConnection.On<int, int, string, int>("changeGlobalTimer", (minutes, seconds, message, status) =>
@@ -475,7 +478,7 @@ namespace RobofestApp
         }
         async Task ReconnectSignalR()
         {
-            hubConnection = new HubConnectionBuilder().WithUrl($"http://192.168.86.59/scoreHub").Build();
+            hubConnection = new HubConnectionBuilder().WithUrl($"http://robofest.daviadoprojects.codes/scoreHub").Build();
             await hubConnection.StartAsync();
             await hubConnection.InvokeAsync("checkSignalRHub");
         }
@@ -493,97 +496,34 @@ namespace RobofestApp
 
         private void SubmitScores_Clicked(object sender, EventArgs e)
         {
-            if (ReviewingScores == false)
-            { 
-                var converter = new ColorTypeConverter();
-                SubmitScores.TextColor = (Color)converter.ConvertFromInvariantString("#ffffff");
-                ReviewingScores = true;
-                fre_opt1.IsEnabled = false;
-                fre_opt2.IsEnabled = false;
-                rin_opt1.IsEnabled = false;
-                rin_opt2.IsEnabled = false;
-                end_opt1.IsEnabled = false;
-                end_opt2.IsEnabled = false;
-                bot5_opt1.IsEnabled = false;
-                bot5_opt2.IsEnabled = false;
-                bot5_opt3.IsEnabled = false;
-                bot4_opt1.IsEnabled = false;
-                bot4_opt2.IsEnabled = false;
-                bot4_opt3.IsEnabled = false;
-                bot3_opt1.IsEnabled = false;
-                bot3_opt2.IsEnabled = false;
-                bot3_opt3.IsEnabled = false;
-                bot2_opt1.IsEnabled = false;
-                bot2_opt2.IsEnabled = false;
-                bot2_opt3.IsEnabled = false;
-                bot1_opt1.IsEnabled = false;
-                bot1_opt2.IsEnabled = false;
-                bot1_opt3.IsEnabled = false;
-                whiteBallsUp.IsEnabled = false;
-                whiteBallsDown.IsEnabled = false;
-                orangeBallsUp.IsEnabled = false;
-                orangeBallsDown.IsEnabled = false;
-                invalidBallsUp.IsEnabled = false;
-                invalidBallsDown.IsEnabled = false;
-                offBallsUp.IsEnabled = false;
-                offBallsDown.IsEnabled = false;
-                scrollViewForm.ScrollToAsync(0, 0, true);
-                Title = "Field 1: Reviewing";
-                SubmitScores.BackgroundColor = (Color)converter.ConvertFromInvariantString("#15d656");
-                //SubmitScores.IsEnabled = false;
-                SubmitScores.Text = "Submit to Database";
-                EditScores.IsVisible = true;
-                SubmitScores.Margin = new Thickness(0, 10, 0, 0);
+            var TeamMatchScore = new TeamMatchStorage();
+            TeamMatchScore.BottleScores = BottleScores;
+            TeamMatchScore.BallScores[0] = BallPoints[0] * 15;
+            TeamMatchScore.BallScores[1] = BallPoints[1] * 18;
+            TeamMatchScore.BallScores[2] = BallPoints[2] * -3;
+            TeamMatchScore.BallScores[3] = BallPoints[3];
+            TeamMatchScore.GAMEScores[0] = GeneralPoints[0];
+            TeamMatchScore.GAMEScores[1] = GeneralPoints[1];
+            TeamMatchScore.Field = CurrentField;
+            TeamMatchScore.FieldReset = GeneralPoints[2];
+            TeamMatchScore.TotalScore = TotalScore;
+            Navigation.PushAsync(new CheckScore(TeamMatchScore, teamData));
+        }
+
+
+        private void judgeKey_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var converter = new ColorTypeConverter();
+            if (judgeKey.Text.ToString() == "1234" && judgeInitials.Text != "" && studentInitials.Text != "")
+            {
+                judgeKey.TextColor = (Color)converter.ConvertFromInvariantString("Color.Green");
+                SubmitScores.IsEnabled = true;
             }
             else
             {
-                Navigation.PushAsync(new Home());
-                //hubConnection.StopAsync();
+                judgeKey.TextColor = (Color)converter.ConvertFromInvariantString("Color.Red");
+                SubmitScores.IsEnabled = false;
             }
-
-        }
-
-        private void EditScores_Clicked(object sender, EventArgs e)
-        {
-            var converter = new ColorTypeConverter();
-            ReviewingScores = false;
-            fre_opt1.IsEnabled = true;
-            fre_opt2.IsEnabled = true;
-            rin_opt1.IsEnabled = true;
-            rin_opt2.IsEnabled = true;
-            end_opt1.IsEnabled = true;
-            end_opt2.IsEnabled = true;
-            bot5_opt1.IsEnabled = true;
-            bot5_opt2.IsEnabled = true;
-            bot5_opt3.IsEnabled = true;
-            bot4_opt1.IsEnabled = true;
-            bot4_opt2.IsEnabled = true;
-            bot4_opt3.IsEnabled = true;
-            bot3_opt1.IsEnabled = true;
-            bot3_opt2.IsEnabled = true;
-            bot3_opt3.IsEnabled = true;
-            bot2_opt1.IsEnabled = true;
-            bot2_opt2.IsEnabled = true;
-            bot2_opt3.IsEnabled = true;
-            bot1_opt1.IsEnabled = true;
-            bot1_opt2.IsEnabled = true;
-            bot1_opt3.IsEnabled = true;
-            whiteBallsUp.IsEnabled = true;
-            whiteBallsDown.IsEnabled = true;
-            orangeBallsUp.IsEnabled = true;
-            orangeBallsDown.IsEnabled = true;
-            invalidBallsUp.IsEnabled = true;
-            invalidBallsDown.IsEnabled = true;
-            offBallsUp.IsEnabled = true;
-            offBallsDown.IsEnabled = true;
-            scrollViewForm.ScrollToAsync(0, 0, true);
-            Title = "Field " + CurrentField.ToString() + ": Scoring (0:00)";
-            SubmitScores.Text = "Review Scores";
-            SubmitScores.TextColor = (Color)converter.ConvertFromInvariantString("#15d656");
-            SubmitScores.BackgroundColor = (Color)converter.ConvertFromInvariantString("Color.Transparent");
-            EditScores.IsVisible = false;
-            SubmitScores.Margin = new Thickness(0, 10, 0, 20);
-            //SubmitScores.IsEnabled = true;
         }
     }
 }

@@ -3,16 +3,18 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
              mc:Ignorable="d"
              x:Class="RobofestApp.NotReadyPage"
              NavigationPage.HasBackButton="False"
+             ios:Page.UseSafeArea="True"
              Title="You are NOT READY" BackgroundColor="#0a6cf5">
     <ContentPage.Content>
         <StackLayout>
             <Image Source="nomark.png" WidthRequest="250" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" Margin="0,20,0,0"/>
 
             <Button Text="I'm Ready!"
-                    Clicked="Button_Clicked" BackgroundColor="White" VerticalOptions="End" Margin="10,0,10,10"/>
+                    Clicked="Button_Clicked" BackgroundColor="White" VerticalOptions="End" Margin="10,0,10,10" FontSize="Medium" FontAttributes="Bold" TextColor="#0a6cf5"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

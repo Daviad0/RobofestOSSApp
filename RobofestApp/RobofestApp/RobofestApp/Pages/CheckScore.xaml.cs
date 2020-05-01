@@ -34,7 +34,7 @@ namespace RobofestApp.Pages
                 SubmitScores.BorderColor = (Color)converter.ConvertFromInvariantString("Color.DeepPink");
                 SubmitScores.Text = "SUBMIT TEST";
             }
-            else if (teamData.Valid)
+            else if (!teamData.Valid)
             {
                 SubmitScores.BackgroundColor = (Color)converter.ConvertFromInvariantString("#f2ad2c");
                 SubmitScores.BorderColor = (Color)converter.ConvertFromInvariantString("#f2ad2c");
@@ -97,7 +97,9 @@ namespace RobofestApp.Pages
             //BALL SCORES
             ballScore.Text = "Ball Score: " + currentTeamMatch.BallScores.Sum().ToString();
             //WHITE BALLS
+            
             var numwhiteballs = currentTeamMatch.BallScores[0] / 15;
+            numWhite.Text = numwhiteballs.ToString();
             if(numwhiteballs >= 1)
             {
                 whiteb1.Source = ImageSource.FromFile("whiteyes.png");
@@ -111,7 +113,9 @@ namespace RobofestApp.Pages
                 whiteb3.Source = ImageSource.FromFile("whiteyes.png");
             }
             //ORANGE BALLS
+            
             var numorangeballs = currentTeamMatch.BallScores[1] / 18;
+            numOrange.Text = numorangeballs.ToString();
             if (numorangeballs >= 1)
             {
                 orangeb1.Source = ImageSource.FromFile("orangeyes.png");
@@ -160,6 +164,11 @@ namespace RobofestApp.Pages
         private void SubmitScores_Clicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new Home());
+        }
+
+        private void EditScores_Clicked(System.Object sender, System.EventArgs e)
+        {
+            Navigation.PopAsync();
         }
     }
 }

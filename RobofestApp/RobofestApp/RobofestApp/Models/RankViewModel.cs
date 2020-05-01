@@ -38,8 +38,8 @@ namespace RobofestApp.Models
                 client.DefaultRequestHeaders.ConnectionClose = true;
                 
                 //client.Timeout = TimeSpan.FromMinutes(20);
-                //client.BaseAddress = new Uri("http://192.168.86.59/team/");
-                HttpResponseMessage response = await client.GetAsync("http://192.168.86.59/team/RawLeaderboard").ConfigureAwait(false);
+                //client.BaseAddress = new Uri("http://robofest.daviadoprojects.codes/team/");
+                HttpResponseMessage response = await client.GetAsync("http://robofest.daviadoprojects.codes/team/RawLeaderboard").ConfigureAwait(false);
                 response.EnsureSuccessStatusCode();
                 json = response.Content.ReadAsStringAsync().Result;
 
@@ -49,7 +49,7 @@ namespace RobofestApp.Models
             // Here you can have your data form db or something else,
             // some data that you already have to put in the list
             //Ranks = new ObservableCollection<TeamRank>();
-            //Ranks.Clear();
+            Ranks.Clear();
             foreach (var jsonranking in ranklist)
             {
                 var newrank = new TeamRank();

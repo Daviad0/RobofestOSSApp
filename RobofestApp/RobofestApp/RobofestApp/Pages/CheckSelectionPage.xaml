@@ -59,17 +59,19 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Is this correct?"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Label FontSize="Large" FontAttributes="Bold" Text="Round 0" x:Name="round" HorizontalOptions="Center"/>
+            <Label FontSize="Large" FontAttributes="Bold" Text="Field 0" x:Name="field" HorizontalOptions="Center"/>
+            <Label FontSize="Large" FontAttributes="Italic" Text="Rerun" TextColor="Green" x:Name="rerun" IsVisible="False" HorizontalOptions="Center"/>
+            <Label FontSize="Large" FontAttributes="Italic" Text="Test Match" TextColor="DeepPink" x:Name="test" IsVisible="False" HorizontalOptions="Center"/>
+            <Label FontSize="Large" FontAttributes="Italic" Text="Not Valid Team" TextColor="#f2ad2c" x:Name="valid" IsVisible="False" HorizontalOptions="Center"/>
             <Button Text="YES"
                     Clicked="Information_Correct"
                     Style="{StaticResource judgeSuccess}"
-                    Margin="10,0,10,0"/>
+                    Margin="10,0,10,0" VerticalOptions="EndAndExpand"/>
             <Button Text="NO"
                     Clicked="Information_Incorrect"
                     Style="{StaticResource judgeNegative}"
-                    Margin="10,0,10,10"/>
+                    Margin="10,0,10,10" VerticalOptions="End"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -36,12 +36,6 @@ namespace RobofestApp.Pages
             userToken = getThisToken.GetToken();
             SetUpSignalR();
         }
-
-        private void Button_Clicked(object sender, EventArgs e)
-        {
-            rankViewModel.Update();
-            BindingContext = rankViewModel;
-        }
         private void TeamDetails(object sender, EventArgs e)
         {
             var button = sender as Button;
@@ -80,7 +74,7 @@ namespace RobofestApp.Pages
             var ip = "localhost";
             if (hubConnection == null || hubConnection.State != HubConnectionState.Connected)
             {
-                hubConnection = new HubConnectionBuilder().WithUrl($"http://192.168.86.59/scoreHub").Build();
+                hubConnection = new HubConnectionBuilder().WithUrl($"http://robofest.daviadoprojects.codes/scoreHub").Build();
             }
 
             hubConnection.On("tokenAuthSucc", () =>
@@ -115,7 +109,7 @@ namespace RobofestApp.Pages
         }
         async Task ReconnectSignalR()
         {
-            hubConnection = new HubConnectionBuilder().WithUrl($"http://192.168.86.59/scoreHub").Build();
+            hubConnection = new HubConnectionBuilder().WithUrl($"http://robofest.daviadoprojects.codes/scoreHub").Build();
             await hubConnection.StartAsync();
             await hubConnection.InvokeAsync("checkSignalRHub");
         }
@@ -127,8 +121,21 @@ namespace RobofestApp.Pages
             }
             catch (Exception ex)
             {
-                JudgeError.Text = "Failed";
+
             }
+        }
+
+        private async void RankList_Refreshing(object sender, EventArgs e)
+        {
+            await rankViewModel.Update();
+            BindingContext = rankViewModel;
+            RankList.EndRefresh();
+        }
+
+        private void ScheduleList_Refreshing(object sender, EventArgs e)
+        {
+            BindingContext = new ScheduleViewModel();
+            ScheduleList.EndRefresh();
         }
     }
 }
