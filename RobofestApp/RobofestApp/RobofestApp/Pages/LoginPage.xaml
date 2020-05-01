@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:iconize="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
              mc:Ignorable="d"
              x:Class="RobofestApp.Pages.LoginPage"
              NavigationPage.HasNavigationBar="True"
@@ -15,18 +16,15 @@
                 <Entry Placeholder="Username"
                        x:Name="LoginUsername"
                        IsSpellCheckEnabled="False"
-                       IsTextPredictionEnabled="False" Margin="20,10,20,0" TextChanged="Form_TextChanged" TextColor="DodgerBlue" HeightRequest="50"/>
+                       IsTextPredictionEnabled="False" Margin="20,10,20,0" TextChanged="Form_TextChanged" TextColor="DodgerBlue" />
                 <Entry Placeholder="Password"
                        x:Name="LoginPassword"
                        IsPassword="True"
                        IsSpellCheckEnabled="False"
-                       IsTextPredictionEnabled="False" Margin="20,0,20,0" TextChanged="Form_TextChanged" TextColor="DodgerBlue" HeightRequest="50"/>
+                       IsTextPredictionEnabled="False" Margin="20,0,20,0" TextChanged="Form_TextChanged" TextColor="DodgerBlue"/>
                 <Button
                     Clicked="Button_Clicked"
-                    Text="Submit" Margin="20,10,20,5"/>
-                <Button
-                    Clicked="autoLogin_Clicked"
-                    Text="Automatically Login" Margin="20,0,20,40" x:Name="autoLogin"/>
+                    Text="Submit" Margin="20,10,20,40"/>
                 
             </StackLayout>
             <StackLayout VerticalOptions="Center" IsVisible="False" x:Name="LoginAccepted">

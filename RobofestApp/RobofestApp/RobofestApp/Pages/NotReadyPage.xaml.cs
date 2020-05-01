@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.SignalR.Client;
-using RobofestApp.Models;
 using RobofestApp.Pages;
 using System;
 using System.Collections.Generic;
@@ -17,12 +16,10 @@ namespace RobofestApp
     {
         static HubConnection hubConnection;
         private static int Score;
-        private static TeamDataStorage teamData = new TeamDataStorage();
         private static int FieldLoaded;
-        public NotReadyPage(TeamDataStorage getData)
+        public NotReadyPage(int Field)
         {
-            teamData = getData;
-            FieldLoaded = getData.Field;
+            FieldLoaded = Field;
             InitializeComponent();
             SetUpSignalR();
         }
@@ -45,7 +42,7 @@ namespace RobofestApp
             {
                 Console.WriteLine(ex.ToString());
             }
-            Navigation.PushAsync(new ReadyPage(teamData));
+            Navigation.PushAsync(new ReadyPage(1));
 
         }
         async private void SetUpSignalR()
@@ -60,7 +57,7 @@ namespace RobofestApp
 
             if(hubConnection == null || hubConnection.State != HubConnectionState.Connected)
             {
-                hubConnection = new HubConnectionBuilder().WithUrl($"http://robofest.daviadoprojects.codes/scoreHub").Build();
+                hubConnection = new HubConnectionBuilder().WithUrl($"http://192.168.86.59/scoreHub").Build();
             }
 
 
@@ -80,7 +77,7 @@ namespace RobofestApp
                     {
                         Console.WriteLine(ex.ToString());
                     }
-                    Navigation.PushAsync(new MainPage(teamData));
+                    Navigation.PushAsync(new MainPage(FieldLoaded));
                     //hubConnection.StopAsync();
                 }
             });

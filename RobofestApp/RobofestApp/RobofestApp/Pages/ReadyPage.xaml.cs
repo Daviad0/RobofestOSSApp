@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Microsoft.AspNetCore.SignalR.Client;
-using RobofestApp.Models;
 
 namespace RobofestApp.Pages
 {
@@ -17,12 +16,10 @@ namespace RobofestApp.Pages
         static HubConnection hubConnection;
         private static DateTime pageLoad;
         private static int FieldLoaded;
-        private static TeamDataStorage teamData = new TeamDataStorage();
-        public ReadyPage(TeamDataStorage getData)
+        public ReadyPage(int Field)
         {
-            teamData = getData;
             pageLoad = DateTime.Now;
-            FieldLoaded = getData.Field;
+            FieldLoaded = Field;
             InitializeComponent();
             SetUpSignalR();
         }
@@ -41,7 +38,7 @@ namespace RobofestApp.Pages
             {
                 Console.WriteLine(ex.ToString());
             }
-            Navigation.PushAsync(new NotReadyPage(teamData));
+            Navigation.PushAsync(new NotReadyPage(FieldLoaded));
             //hubConnection.StopAsync();
         }
 
@@ -59,7 +56,7 @@ namespace RobofestApp.Pages
             {
                 Console.WriteLine(ex.ToString());
             }
-            Navigation.PushAsync(new MainPage(teamData));
+            Navigation.PushAsync(new MainPage(FieldLoaded));
             //hubConnection.StopAsync();
         }
         async private void SetUpSignalR()
@@ -73,7 +70,7 @@ namespace RobofestApp.Pages
             var ip = "localhost";
             if (hubConnection == null || hubConnection.State != HubConnectionState.Connected)
             {
-                hubConnection = new HubConnectionBuilder().WithUrl($"http://robofest.daviadoprojects.codes/scoreHub").Build();
+                hubConnection = new HubConnectionBuilder().WithUrl($"http://192.168.86.59/scoreHub").Build();
             }
 
             hubConnection.On<bool>("changeJudgeLock", (locked) =>
@@ -92,7 +89,7 @@ namespace RobofestApp.Pages
                     {
                         Console.WriteLine(ex.ToString());
                     }
-                    Navigation.PushAsync(new MainPage(teamData));
+                    Navigation.PushAsync(new MainPage(FieldLoaded));
                     //hubConnection.StopAsync();
                 }
             });
