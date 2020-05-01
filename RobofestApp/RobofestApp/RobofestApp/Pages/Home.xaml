@@ -140,7 +140,7 @@
         <StackLayout>
             <Button x:Name="GoToJudge"
                 Clicked="GoToJudge_Clicked"
-                    Text="Let's Judge!" Margin="10,10,10,0"/>
+                    Text="Judge Away!" Margin="10,10,10,0"/>
         </StackLayout>
         
     </ContentPage>
