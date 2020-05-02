@@ -21,12 +21,15 @@
                        IsPassword="True"
                        IsSpellCheckEnabled="False"
                        IsTextPredictionEnabled="False" Margin="20,0,20,0" TextChanged="Form_TextChanged" TextColor="DodgerBlue" HeightRequest="50"/>
-                <Button
+                <!--<Button
                     Clicked="Button_Clicked"
-                    Text="Submit" Margin="20,10,20,5"/>
+                    Text="Submit" Margin="20,10,20,5"/>-->
                 <Button
                     Clicked="autoLogin_Clicked"
-                    Text="Automatically Login" Margin="20,0,20,40" x:Name="autoLogin"/>
+                    Text="Automatically Login" Margin="20,10,20,5" x:Name="autoLogin"/>
+                <Button
+                    Clicked="spectate_Clicked"
+                    Text="Spectator Mode" Margin="20,0,20,40" x:Name="spectate"/>
                 
             </StackLayout>
             <StackLayout VerticalOptions="Center" IsVisible="False" x:Name="LoginAccepted">

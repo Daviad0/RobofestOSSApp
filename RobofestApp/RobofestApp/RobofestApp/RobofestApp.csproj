@@ -25,31 +25,34 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Pages\CheckScore.xaml">
+    <EmbeddedResource Update="Pages\JudgePages\CheckScore.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Pages\CheckSelectionPage.xaml">
+    <EmbeddedResource Update="Pages\JudgePages\CheckSelectionPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Pages\FieldSelectionPage.xaml">
+    <EmbeddedResource Update="Pages\JudgePages\FieldSelectionPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Pages\Home.xaml">
+    <EmbeddedResource Update="Pages\JudgePages\Home.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\LoginPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Pages\NotReadyPage.xaml">
+    <EmbeddedResource Update="Pages\JudgePages\NotReadyPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Pages\ReadyPage.xaml">
+    <EmbeddedResource Update="Pages\JudgePages\ReadyPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Pages\ServerError.xaml">
+    <EmbeddedResource Update="Pages\JudgePages\ServerError.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Pages\TeamDetails.xaml">
+    <EmbeddedResource Update="Pages\JudgePages\TeamDetails.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\SpectatorPages\SpectateHome.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

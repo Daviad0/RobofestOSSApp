@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Plugin.Iconize;
+using RobofestApp.Pages.SpectatorPages;
 
 namespace RobofestApp.Pages
 {
@@ -101,6 +102,11 @@ namespace RobofestApp.Pages
             LoginUsername.Text = "testemail1@gmail.com";
             LoginPassword.Text = "Robofestwte@1";
             SendScore();
+        }
+
+        private void spectate_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new SpectateHome());
         }
     }
 }
