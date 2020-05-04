@@ -9,6 +9,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Plugin.Iconize;
 using RobofestApp.Pages.SpectatorPages;
+using RobofestApp.Models;
 
 namespace RobofestApp.Pages
 {
@@ -21,6 +22,7 @@ namespace RobofestApp.Pages
         {
             InitializeComponent();
             SetUpSignalR();
+            BindingContext = new CompetitionViewModel();
         }
 
         private void Button_Clicked(object sender, EventArgs e)

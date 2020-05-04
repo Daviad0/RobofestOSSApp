@@ -76,6 +76,7 @@
     <BundleResource Include="Resources\fa5brands.otf" />
     <BundleResource Include="Resources\fa5regular.otf" />
     <BundleResource Include="Resources\fa5solid.otf" />
+    <BundleResource Include="Resources\icofont.ttf" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\bottleneg.png.imageset\bottleneg.png">

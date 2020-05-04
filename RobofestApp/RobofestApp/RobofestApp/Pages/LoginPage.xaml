@@ -5,25 +5,59 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="RobofestApp.Pages.LoginPage"
-             NavigationPage.HasNavigationBar="True"
+             NavigationPage.HasNavigationBar="False"
              NavigationPage.HasBackButton="False"
              Title="Login to ROSS">
     <ContentPage.Content>
         <StackLayout VerticalOptions="Center">
             <StackLayout VerticalOptions="Center" x:Name="LoginPending">
                 <Label Text="Login" x:Name="StatusLabel" FontSize="60" Margin="23, 0, 0, 0"/>
-                <Entry Placeholder="Username"
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="&#xed05;" FontFamily="{StaticResource IconFont}" Grid.Column="0" VerticalOptions="Center" FontSize="20" Margin="10,5,0,0" HorizontalTextAlignment="Center"/>
+                    <Entry Placeholder="Username"
                        x:Name="LoginUsername"
                        IsSpellCheckEnabled="False"
-                       IsTextPredictionEnabled="False" Margin="20,10,20,0" TextChanged="Form_TextChanged" TextColor="DodgerBlue" HeightRequest="50"/>
-                <Entry Placeholder="Password"
+                       IsTextPredictionEnabled="False" TextChanged="Form_TextChanged" TextColor="DodgerBlue" HeightRequest="50" Grid.Column="1" Margin="0,0,20,0"/>
+                </Grid>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="&#xef59;" FontFamily="{StaticResource IconFont}" Grid.Column="0" VerticalOptions="Center" FontSize="20" Margin="10,5,0,0" HorizontalTextAlignment="Center"/>
+                    <Entry Placeholder="Password"
                        x:Name="LoginPassword"
                        IsPassword="True"
                        IsSpellCheckEnabled="False"
-                       IsTextPredictionEnabled="False" Margin="20,0,20,0" TextChanged="Form_TextChanged" TextColor="DodgerBlue" HeightRequest="50"/>
+                       IsTextPredictionEnabled="False" TextChanged="Form_TextChanged" TextColor="DodgerBlue" HeightRequest="50" Grid.Column="1" Margin="0,0,20,0"/>
+                </Grid>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="&#xeec8;" FontFamily="{StaticResource IconFont}" Grid.Column="0" VerticalOptions="Center" FontSize="20" Margin="10,5,0,0" HorizontalTextAlignment="Center"/>
+                    <Picker ItemsSource="{Binding Comps}" ItemDisplayBinding="{Binding Location}" Margin="0,0,20,0" Title="Select Your Competition" x:Name="locationPicker" HeightRequest="50" FontAttributes="Bold" Grid.Column="1"/>
+                </Grid>
+                
+                
                 <!--<Button
                     Clicked="Button_Clicked"
                     Text="Submit" Margin="20,10,20,5"/>-->
+                
                 <Button
                     Clicked="autoLogin_Clicked"
                     Text="Automatically Login" Margin="20,10,20,5" x:Name="autoLogin"/>
