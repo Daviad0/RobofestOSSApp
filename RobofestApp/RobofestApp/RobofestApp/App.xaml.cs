@@ -14,7 +14,7 @@ namespace RobofestApp
         public App()
         {
             InitializeComponent();
-            MainPage = new NavigationPage(new LoginPage());
+            MainPage = new NavigationPage(new SelectCompetition());
         }
 
         protected override void OnStart()

@@ -33,8 +33,8 @@
                 
             </StackLayout>
             <StackLayout VerticalOptions="Center" IsVisible="False" x:Name="LoginAccepted">
-                <Label Text="Logging You In..." Margin="23, 10,0,0"/>
-                <ProgressBar ProgressColor="DodgerBlue" Progress="0.1" Margin="20, 10, 20, 0" x:Name="ProgressLogin"/>
+                <Label Text="Logging You In..." Margin="23,10,0,0"/>
+                <ProgressBar ProgressColor="#0a6cf5" Progress="0.1" Margin="20, 10, 20, 0" x:Name="ProgressLogin"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

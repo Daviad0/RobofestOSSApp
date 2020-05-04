@@ -40,7 +40,7 @@
                                        Grid.Column="0"
                                        FontSize="Large"
                                        Margin="10,0,15,0"
-                                       FontAttributes="Bold"/>
+                                       FontAttributes="Bold" x:Name="{Binding Ranking, StringFormat='{0}_ranklabel'}"/>
                                 <Grid Grid.Row="0" Grid.Column="1" HorizontalOptions="Start">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="*"/>
@@ -104,6 +104,7 @@
                                        Margin="10,0,15,0"
                                        FontAttributes="Bold"
                                        TextColor="{Binding CompletedColor}"/>
+                                
                                 <Grid Grid.Row="0" Grid.Column="1" HorizontalOptions="Start">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="*"/>

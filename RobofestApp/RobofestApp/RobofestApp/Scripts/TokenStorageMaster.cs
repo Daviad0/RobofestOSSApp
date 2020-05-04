@@ -9,13 +9,14 @@ namespace RobofestApp.Scripts
 {
     public class TokenStorageMaster
     {
-        public string StoreToken(string token, string session)
+        public string StoreToken(string token, string session, int CompID)
         {
             try
             {
                 var objecttostore = new TokenStorageModel();
                 objecttostore.AuthToken = token;
                 objecttostore.SessionID = session;
+                objecttostore.CompID = CompID;
                 var jsontostore = JsonConvert.SerializeObject(objecttostore);
                 string fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "token.txt");
                 File.WriteAllText(fileName, jsontostore);

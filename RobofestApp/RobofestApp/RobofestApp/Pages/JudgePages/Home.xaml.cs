@@ -50,6 +50,8 @@ namespace RobofestApp.Pages
                 {
                     await rankViewModel.Update();
                     BindingContext = rankViewModel;
+                    
+
                 }
                 else if (tabbedPage.CurrentPage.ClassId == "schedule")
                 {

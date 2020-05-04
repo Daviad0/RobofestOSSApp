@@ -8,5 +8,6 @@ namespace RobofestApp.Models
     {
         public string SessionID { get; set; }
         public string AuthToken { get; set; }
+        public int CompID { get; set; }
     }
 }

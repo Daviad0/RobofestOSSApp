@@ -41,12 +41,12 @@ namespace RobofestApp.Pages
             hubConnection.On<string, string>("authSucc", async (token, session) =>
             {
                 Analytics.TrackEvent("User " + LoginUsername.Text + " logged in to app. Token: " + token);
-                await ProgressLogin.ProgressTo(0.85, 1000, Easing.Linear);
+                await ProgressLogin.ProgressTo(0.85, 1000, Easing.SinOut);
                 var TokenStorageItem = new TokenStorageMaster();
-                var returnValue = TokenStorageItem.StoreToken(token, session);
-                await ProgressLogin.ProgressTo(0.95, 1000, Easing.Linear);
+                var returnValue = TokenStorageItem.StoreToken(token, session, 1);
+                await ProgressLogin.ProgressTo(0.95, 1000, Easing.SinOut);
                 Analytics.TrackEvent(returnValue);
-                await ProgressLogin.ProgressTo(1, 1000, Easing.Linear);
+                await ProgressLogin.ProgressTo(1, 1000, Easing.SinOut);
                 await Navigation.PushAsync(new Home());
                 await hubConnection.StopAsync();
             });
@@ -57,13 +57,13 @@ namespace RobofestApp.Pages
             });
             hubConnection.On("authAccept", () =>
             {
-                ProgressLogin.ProgressTo(0.1, 1000, Easing.Linear);
+                ProgressLogin.ProgressTo(0.1, 1000, Easing.SinOut);
                 LoginPending.IsVisible = false;
                 LoginAccepted.IsVisible = true;
             });
             hubConnection.On<int>("authProgress", (progress) =>
             {
-                ProgressLogin.ProgressTo(progress / 100, 1000, Easing.Linear);
+                ProgressLogin.ProgressTo(progress / 100, 1000, Easing.SinOut);
             });
         }
         async Task SignalRConnect()
