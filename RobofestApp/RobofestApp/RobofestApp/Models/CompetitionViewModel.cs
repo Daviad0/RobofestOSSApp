@@ -6,12 +6,13 @@ using System.ComponentModel;
 using System.Net;
 using System.Net.Http;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace RobofestApp.Models
 {
     public class CompetitionViewModel
     {
-        private ObservableCollection<CompetitionModel> comps;
+        public static ObservableCollection<CompetitionModel> comps = new ObservableCollection<CompetitionModel>();
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -26,7 +27,7 @@ namespace RobofestApp.Models
         }
         
 
-        public CompetitionViewModel()
+        public async Task Update()
         {
             var json = "";
             using (var client = new HttpClient(new HttpClientHandler { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate }))
@@ -40,10 +41,9 @@ namespace RobofestApp.Models
 
             }
             var schedulelist = JsonConvert.DeserializeObject<List<CompetitionModel>>(json);
-
+            Comps.Clear();
             // Here you can have your data form db or something else,
             // some data that you already have to put in the list
-            Comps = new ObservableCollection<CompetitionModel>();
             foreach (var jsonitem in schedulelist)
             {
                 var newcomp = new CompetitionModel();

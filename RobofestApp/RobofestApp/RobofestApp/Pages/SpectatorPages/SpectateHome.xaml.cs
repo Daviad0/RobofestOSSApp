@@ -14,14 +14,16 @@ namespace RobofestApp.Pages.SpectatorPages
     
     public partial class SpectateHome : TabbedPage
     {
+        private static int CompID = 0;
         private RankViewModel rankViewModel = new RankViewModel();
         public SpectateHome()
         {
+            CompID = (int)Application.Current.Properties["currentCompID"];
             InitializeComponent();
         }
         protected override async void OnAppearing()
         {
-            await rankViewModel.Update();
+            await rankViewModel.Update(CompID);
             BindingContext = rankViewModel;
             base.OnAppearing();
         }

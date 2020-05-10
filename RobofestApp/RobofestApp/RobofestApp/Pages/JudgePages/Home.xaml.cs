@@ -21,6 +21,7 @@ namespace RobofestApp.Pages
         static HubConnection hubConnection;
         private static ObservableCollection<string> data = new ObservableCollection<string>();
         private static TokenStorageModel userToken = new TokenStorageModel();
+        private static int CompID = (int)Application.Current.Properties["currentCompID"];
         private RankViewModel rankViewModel = new RankViewModel();
         private static bool ConnectionTested;
 
@@ -28,6 +29,7 @@ namespace RobofestApp.Pages
         {
             ConnectionTested = false;
             InitializeComponent();
+            CompID = (int)Application.Current.Properties["currentCompID"];
             /*data.Add("1. 1001-1");
             data.Add("2. 1002-1");
             data.Add("3. 1003-1");
@@ -48,7 +50,7 @@ namespace RobofestApp.Pages
             {
                 if (tabbedPage.CurrentPage.ClassId == "rank")
                 {
-                    await rankViewModel.Update();
+                    await rankViewModel.Update(CompID);
                     BindingContext = rankViewModel;
                     
 
@@ -77,6 +79,7 @@ namespace RobofestApp.Pages
             if (hubConnection == null || hubConnection.State != HubConnectionState.Connected)
             {
                 hubConnection = new HubConnectionBuilder().WithUrl($"http://robofest.daviadoprojects.codes/scoreHub").Build();
+                hubConnection.ServerTimeout = TimeSpan.FromMinutes(30);
             }
 
             hubConnection.On("tokenAuthSucc", () =>
@@ -129,7 +132,7 @@ namespace RobofestApp.Pages
 
         private async void RankList_Refreshing(object sender, EventArgs e)
         {
-            await rankViewModel.Update();
+            await rankViewModel.Update(CompID);
             BindingContext = rankViewModel;
             RankList.EndRefresh();
         }

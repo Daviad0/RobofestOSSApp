@@ -439,7 +439,9 @@ namespace RobofestApp
             var ip = "localhost";
             if (hubConnection == null || hubConnection.State != HubConnectionState.Connected)
             {
+                hubConnection.ServerTimeout = TimeSpan.FromMinutes(30);
                 hubConnection = new HubConnectionBuilder().WithUrl($"http://robofest.daviadoprojects.codes/scoreHub").Build();
+                
             }
 
             hubConnection.On<int, int, string, int>("changeGlobalTimer", (minutes, seconds, message, status) =>
@@ -458,6 +460,7 @@ namespace RobofestApp
             {
                 ConnectionTested = true;
             });
+            
 
         }
         async Task SignalRConnect()
@@ -486,7 +489,7 @@ namespace RobofestApp
         {
             try
             {
-                await hubConnection.InvokeAsync("initField", CurrentField, 5, TotalScore, "1001-1", true, false, Data);
+                await hubConnection.InvokeAsync("initField", CurrentField, 5, TotalScore, "1001-1", true, false, Data,1);
             }
             catch(Exception ex)
             {

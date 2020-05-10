@@ -30,7 +30,7 @@ namespace RobofestApp.Models
         }
 
 
-        public async Task Update()
+        public async Task Update(int CompID)
         {
             var json = "";
             //using (var client = new HttpClient(new HttpClientHandler { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate }))
@@ -39,7 +39,7 @@ namespace RobofestApp.Models
                 
                 //client.Timeout = TimeSpan.FromMinutes(20);
                 //client.BaseAddress = new Uri("http://robofest.daviadoprojects.codes/team/");
-                HttpResponseMessage response = await client.GetAsync("http://robofest.daviadoprojects.codes/team/RawLeaderboard").ConfigureAwait(false);
+                HttpResponseMessage response = await client.GetAsync("http://robofest.daviadoprojects.codes/team/RawLeaderboard/" + CompID.ToString()).ConfigureAwait(false);
                 response.EnsureSuccessStatusCode();
                 json = response.Content.ReadAsStringAsync().Result;
 

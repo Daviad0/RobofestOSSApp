@@ -11,7 +11,7 @@
     <ContentPage.Content>
         <StackLayout VerticalOptions="Center">
             <StackLayout VerticalOptions="Center" x:Name="LoginPending">
-                <Label Text="Login" x:Name="StatusLabel" FontSize="60" Margin="23, 0, 0, 0"/>
+                <Label Text="Login" x:Name="StatusLabel" FontSize="60" Margin="13, 0, 0, 0"/>
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="50"/>
@@ -50,7 +50,7 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Label Text="&#xeec8;" FontFamily="{StaticResource IconFont}" Grid.Column="0" VerticalOptions="Center" FontSize="20" Margin="10,5,0,0" HorizontalTextAlignment="Center"/>
-                    <Picker ItemsSource="{Binding Comps}" ItemDisplayBinding="{Binding Location}" Margin="0,0,20,0" Title="Select Your Competition" x:Name="locationPicker" HeightRequest="50" FontAttributes="Bold" Grid.Column="1"/>
+                    <Picker ItemsSource="{Binding Comps}" ItemDisplayBinding="{Binding Location}" Margin="0,0,20,0" Title="Select Your Competition" x:Name="locationPicker" HeightRequest="50" SelectedIndexChanged="locationPicker_SelectedIndexChanged" FontAttributes="Bold" Grid.Column="1"/>
                 </Grid>
                 
                 

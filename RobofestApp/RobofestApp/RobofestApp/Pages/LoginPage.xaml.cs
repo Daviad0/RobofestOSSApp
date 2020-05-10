@@ -10,21 +10,31 @@ using Xamarin.Forms.Xaml;
 using Plugin.Iconize;
 using RobofestApp.Pages.SpectatorPages;
 using RobofestApp.Models;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace RobofestApp.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage
     {
+        private static CompetitionModel[] competitionList = new CompetitionModel[1];
+        private CompetitionViewModel compViewModel = new CompetitionViewModel();
         HubConnection hubConnection;
 
         public LoginPage()
         {
             InitializeComponent();
             SetUpSignalR();
-            BindingContext = new CompetitionViewModel();
-        }
+            
 
+        }
+        protected async override void OnAppearing()
+        {
+            await compViewModel.Update();
+            BindingContext = compViewModel;
+            competitionList = compViewModel.Comps.ToArray();
+        }
         private void Button_Clicked(object sender, EventArgs e)
         {
             SendScore();
@@ -39,7 +49,22 @@ namespace RobofestApp.Pages
             var converter = new ColorTypeConverter();
             var ip = "localhost";
             hubConnection = new HubConnectionBuilder().WithUrl($"http://robofest.daviadoprojects.codes/scoreHub").Build();
-            hubConnection.HandshakeTimeout = TimeSpan.FromSeconds(10);
+            hubConnection.HandshakeTimeout = TimeSpan.FromMinutes(10);
+            hubConnection.KeepAliveInterval = TimeSpan.FromSeconds(5);
+            hubConnection.Closed += (exception) =>
+            {
+                if (exception == null)
+                {
+                    DisplayAlert("OK","Connection closed without error.","OK");
+                    Console.WriteLine($"Connection closed due to no error");
+                }
+                else
+                {
+                    DisplayAlert("OK", "Connection closed with error.", "OK");
+                    Console.WriteLine($"Connection closed due to an error: {exception}");
+                }
+                return Task.CompletedTask;
+            };
             hubConnection.On<string, string>("authSucc", async (token, session) =>
             {
                 Analytics.TrackEvent("User " + LoginUsername.Text + " logged in to app. Token: " + token);
@@ -88,7 +113,8 @@ namespace RobofestApp.Pages
             }
             catch (Exception ex)
             {
-               
+                await hubConnection.StartAsync();
+                await SendScore();
             }
         }
 
@@ -109,6 +135,12 @@ namespace RobofestApp.Pages
         private void spectate_Clicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new SpectateHome());
+        }
+
+        private async void locationPicker_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Application.Current.Properties["currentCompID"] = competitionList[locationPicker.SelectedIndex].CompID;
+            
         }
     }
 }

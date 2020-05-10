@@ -398,7 +398,7 @@ namespace RobofestApp.Pages
         {
             try
             {
-                await hubConnection.InvokeAsync("judgeClientConnection");
+                await hubConnection.InvokeAsync("judgeClientConnection", 1);
             }
             catch (Exception ex)
             {

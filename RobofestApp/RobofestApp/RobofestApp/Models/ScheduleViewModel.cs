@@ -7,6 +7,10 @@ using System.Text;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
+using Xamarin.Forms.PlatformConfiguration.AndroidSpecific.AppCompat;
+using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 
 namespace RobofestApp.Models
 {
@@ -36,7 +40,7 @@ namespace RobofestApp.Models
                 client.DefaultRequestHeaders.ConnectionClose = true;
                 client.Timeout = TimeSpan.FromSeconds(5);
                 client.BaseAddress = new Uri("http://robofest.daviadoprojects.codes/team/");
-                HttpResponseMessage response = client.GetAsync("RawSchedule").Result;
+                HttpResponseMessage response = client.GetAsync("RawSchedule/1").Result;
                 response.EnsureSuccessStatusCode();
                 json = response.Content.ReadAsStringAsync().Result;
                 
