@@ -23,6 +23,7 @@ namespace RobofestApp.Pages
         private static TokenStorageModel userToken = new TokenStorageModel();
         private static int CompID = (int)Application.Current.Properties["currentCompID"];
         private RankViewModel rankViewModel = new RankViewModel();
+        private ScheduleViewModel scheduleViewModel = new ScheduleViewModel();
         private static bool ConnectionTested;
 
         public Home()
@@ -57,7 +58,8 @@ namespace RobofestApp.Pages
                 }
                 else if (tabbedPage.CurrentPage.ClassId == "schedule")
                 {
-                    BindingContext = new ScheduleViewModel();
+                    await scheduleViewModel.Update(CompID);
+                    BindingContext = scheduleViewModel;
                 }
             }
             
@@ -78,7 +80,7 @@ namespace RobofestApp.Pages
             var ip = "localhost";
             if (hubConnection == null || hubConnection.State != HubConnectionState.Connected)
             {
-                hubConnection = new HubConnectionBuilder().WithUrl($"http://robofest.daviadoprojects.codes/scoreHub").Build();
+                hubConnection = new HubConnectionBuilder().WithUrl($"http://24.35.25.72:80/scoreHub").Build();
                 hubConnection.ServerTimeout = TimeSpan.FromMinutes(30);
             }
 
@@ -114,7 +116,7 @@ namespace RobofestApp.Pages
         }
         async Task ReconnectSignalR()
         {
-            hubConnection = new HubConnectionBuilder().WithUrl($"http://robofest.daviadoprojects.codes/scoreHub").Build();
+            hubConnection = new HubConnectionBuilder().WithUrl($"http://24.35.25.72:80/scoreHub").Build();
             await hubConnection.StartAsync();
             await hubConnection.InvokeAsync("checkSignalRHub");
         }
@@ -126,7 +128,8 @@ namespace RobofestApp.Pages
             }
             catch (Exception ex)
             {
-
+                await hubConnection.StartAsync();
+                await TryTokenLogin();
             }
         }
 

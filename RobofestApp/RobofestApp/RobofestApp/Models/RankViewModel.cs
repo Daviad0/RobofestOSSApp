@@ -38,8 +38,8 @@ namespace RobofestApp.Models
                 client.DefaultRequestHeaders.ConnectionClose = true;
                 
                 //client.Timeout = TimeSpan.FromMinutes(20);
-                //client.BaseAddress = new Uri("http://robofest.daviadoprojects.codes/team/");
-                HttpResponseMessage response = await client.GetAsync("http://robofest.daviadoprojects.codes/team/RawLeaderboard/" + CompID.ToString()).ConfigureAwait(false);
+                //client.BaseAddress = new Uri("http://24.35.25.72:80/team/");
+                HttpResponseMessage response = await client.GetAsync("http://24.35.25.72:80/team/RawLeaderboard/" + CompID.ToString()).ConfigureAwait(false);
                 response.EnsureSuccessStatusCode();
                 json = response.Content.ReadAsStringAsync().Result;
 

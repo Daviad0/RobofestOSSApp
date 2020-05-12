@@ -17,6 +17,7 @@ namespace RobofestApp.Pages
         static HubConnection hubConnection;
         private static DateTime pageLoad;
         private static int FieldLoaded;
+        private static int CompID = (int)Application.Current.Properties["currentCompID"];
         private static TeamDataStorage teamData = new TeamDataStorage();
         public ReadyPage(TeamDataStorage getData)
         {
@@ -73,7 +74,7 @@ namespace RobofestApp.Pages
             var ip = "localhost";
             if (hubConnection == null || hubConnection.State != HubConnectionState.Connected)
             {
-                hubConnection = new HubConnectionBuilder().WithUrl($"http://robofest.daviadoprojects.codes/scoreHub").Build();
+                hubConnection = new HubConnectionBuilder().WithUrl($"http://24.35.25.72:80/scoreHub").Build();
             }
 
             hubConnection.On<bool>("changeJudgeLock", (locked) =>
@@ -122,12 +123,15 @@ namespace RobofestApp.Pages
         {
             try
             {
-                await hubConnection.InvokeAsync("initField", FieldLoaded, 2, 0, "1000-1", true, false, "");
-                await hubConnection.InvokeAsync("judgeClientConnection");
+                await hubConnection.InvokeAsync("initializeClient", CompID);
+                await hubConnection.InvokeAsync("initField", FieldLoaded, 2, 0, "1000-1", true, false, "", CompID);
+                await hubConnection.InvokeAsync("judgeClientConnection", CompID);
             }
             catch (Exception ex)
             {
-
+                await hubConnection.StartAsync();
+                await SendFieldStatus();
+                Console.WriteLine(ex.ToString());
             }
         }
     }

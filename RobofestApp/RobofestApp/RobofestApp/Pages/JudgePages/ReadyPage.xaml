@@ -15,7 +15,7 @@
             <Image Source="checkmark.png" WidthRequest="250" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" Margin="0,20,0,0"/>
 
             <Button Text="I'm Not Ready!"
-                    Clicked="Button_Clicked" BackgroundColor="White" VerticalOptions="End" Margin="10,0,10,10" FontSize="Medium" FontAttributes="Bold" TextColor="#0a6cf5"/>
+                    Clicked="Button_Clicked" BackgroundColor="White" VerticalOptions="End" Margin="10,0,10,10" FontSize="Medium" FontAttributes="Bold" TextColor="#0a6cf5" CornerRadius="6"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

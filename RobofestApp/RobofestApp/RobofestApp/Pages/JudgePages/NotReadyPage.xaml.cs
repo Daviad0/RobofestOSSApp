@@ -17,6 +17,7 @@ namespace RobofestApp
     {
         static HubConnection hubConnection;
         private static int Score;
+        private static int CompID = (int)Application.Current.Properties["currentCompID"];
         private static TeamDataStorage teamData = new TeamDataStorage();
         private static int FieldLoaded;
         public NotReadyPage(TeamDataStorage getData)
@@ -60,7 +61,7 @@ namespace RobofestApp
 
             if(hubConnection == null || hubConnection.State != HubConnectionState.Connected)
             {
-                hubConnection = new HubConnectionBuilder().WithUrl($"http://robofest.daviadoprojects.codes/scoreHub").Build();
+                hubConnection = new HubConnectionBuilder().WithUrl($"http://24.35.25.72:80/scoreHub").Build();
             }
 
 
@@ -112,11 +113,12 @@ namespace RobofestApp
             
             try
             {
-                await hubConnection.InvokeAsync("initField", FieldLoaded, 1, 0, "1000-1", true, false, "");
+                await hubConnection.InvokeAsync("initField", FieldLoaded, 1, 0, "1000-1", true, false, "", CompID);
             }
             catch (Exception ex)
             {
-                
+                await hubConnection.StartAsync();
+                await SendFieldStatus();
             }
         }
     }

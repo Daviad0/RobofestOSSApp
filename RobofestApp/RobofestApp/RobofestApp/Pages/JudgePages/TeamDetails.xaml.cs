@@ -23,7 +23,7 @@ namespace RobofestApp.Pages
             var json = "";
             using (var client = new HttpClient(new HttpClientHandler { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate }))
             {
-                client.BaseAddress = new Uri("http://robofest.daviadoprojects.codes/team/");
+                client.BaseAddress = new Uri("http://24.35.25.72:80/team/");
                 HttpResponseMessage response = client.GetAsync("RawTeamData?TeamNumber=" + TeamNumber).Result;
                 if (response.Content.ReadAsStringAsync().Result != "")
                 {

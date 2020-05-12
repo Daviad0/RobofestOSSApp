@@ -48,7 +48,7 @@ namespace RobofestApp.Pages
         {
             var converter = new ColorTypeConverter();
             var ip = "localhost";
-            hubConnection = new HubConnectionBuilder().WithUrl($"http://robofest.daviadoprojects.codes/scoreHub").Build();
+            hubConnection = new HubConnectionBuilder().WithUrl($"http://24.35.25.72:80/scoreHub").Build();
             hubConnection.HandshakeTimeout = TimeSpan.FromMinutes(10);
             hubConnection.KeepAliveInterval = TimeSpan.FromSeconds(5);
             hubConnection.Closed += (exception) =>

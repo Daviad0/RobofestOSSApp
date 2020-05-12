@@ -17,7 +17,7 @@ namespace RobofestApp.Models
     public class ScheduleViewModel : INotifyPropertyChanged
     {
 
-        private ObservableCollection<RawScheduleItem> items;
+        private static ObservableCollection<RawScheduleItem> items = new ObservableCollection<RawScheduleItem>();
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -32,15 +32,15 @@ namespace RobofestApp.Models
         }
 
 
-        public ScheduleViewModel()
+        public async Task Update(int CompID)
         {
             var json = "";
             using (var client = new HttpClient(new HttpClientHandler { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate }))
             {
                 client.DefaultRequestHeaders.ConnectionClose = true;
                 client.Timeout = TimeSpan.FromSeconds(5);
-                client.BaseAddress = new Uri("http://robofest.daviadoprojects.codes/team/");
-                HttpResponseMessage response = client.GetAsync("RawSchedule/1").Result;
+                client.BaseAddress = new Uri("http://24.35.25.72:80/team/");
+                HttpResponseMessage response = client.GetAsync("RawSchedule/" + CompID.ToString()).Result;
                 response.EnsureSuccessStatusCode();
                 json = response.Content.ReadAsStringAsync().Result;
                 
@@ -49,7 +49,7 @@ namespace RobofestApp.Models
 
             // Here you can have your data form db or something else,
             // some data that you already have to put in the list
-            Items = new ObservableCollection<RawScheduleItem>();
+            Items.Clear();
             foreach (var jsonitem in schedulelist)
             {
                 var match = new RawScheduleItem();

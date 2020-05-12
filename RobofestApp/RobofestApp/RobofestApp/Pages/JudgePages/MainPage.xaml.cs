@@ -24,6 +24,7 @@ namespace RobofestApp
         private static string Data = "";
         private static int TotalScore = 0;
         private static int CurrentField;
+        private static int CompID = (int)Xamarin.Forms.Application.Current.Properties["currentCompID"];
         private static bool ReviewingScores = false;
         private static bool ConnectionTested = false;
         private static TeamDataStorage teamData = new TeamDataStorage();
@@ -35,11 +36,12 @@ namespace RobofestApp
             CurrentField = getData.Field;
             SetUpSignalR();
             InitializeComponent();
-            Array.Clear(BottleScores, 0, BottleScores.Length);
-            Array.Clear(GeneralPoints, 0, GeneralPoints.Length);
-            Array.Clear(BallPoints, 0, BallPoints.Length);
+            //Array.Clear(BottleScores, 0, BottleScores.Length);
+            //Array.Clear(GeneralPoints, 0, GeneralPoints.Length);
+            //Array.Clear(BallPoints, 0, BallPoints.Length);
             TotalScore = 0;
             Data = "";
+            Title = "Field " + CurrentField.ToString() + " Scoring (2:00)";
         }
         protected override void OnAppearing()
         {
@@ -439,8 +441,7 @@ namespace RobofestApp
             var ip = "localhost";
             if (hubConnection == null || hubConnection.State != HubConnectionState.Connected)
             {
-                hubConnection.ServerTimeout = TimeSpan.FromMinutes(30);
-                hubConnection = new HubConnectionBuilder().WithUrl($"http://robofest.daviadoprojects.codes/scoreHub").Build();
+                hubConnection = new HubConnectionBuilder().WithUrl($"http://24.35.25.72:80/scoreHub").Build();
                 
             }
 
@@ -481,7 +482,7 @@ namespace RobofestApp
         }
         async Task ReconnectSignalR()
         {
-            hubConnection = new HubConnectionBuilder().WithUrl($"http://robofest.daviadoprojects.codes/scoreHub").Build();
+            hubConnection = new HubConnectionBuilder().WithUrl($"http://24.35.25.72:80/scoreHub").Build();
             await hubConnection.StartAsync();
             await hubConnection.InvokeAsync("checkSignalRHub");
         }
@@ -489,11 +490,12 @@ namespace RobofestApp
         {
             try
             {
-                await hubConnection.InvokeAsync("initField", CurrentField, 5, TotalScore, "1001-1", true, false, Data,1);
+                await hubConnection.InvokeAsync("initField", CurrentField, 5, TotalScore, "1001-1", true, false, Data, CompID);
             }
             catch(Exception ex)
             {
-
+                await hubConnection.StartAsync();
+                await SendScore();
             }
         }
 

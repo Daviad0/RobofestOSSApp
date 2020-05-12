@@ -22,6 +22,7 @@ namespace RobofestApp.Pages
         private static bool Usable = true;
         private static int[] TeamIDs = new int[6];
         private static string[] TeamNumbers = new string[6];
+        private static int CompID = (int)Application.Current.Properties["currentCompID"];
         private static int[] Rounds = new int[6];
         private static bool[] Reruns = new bool[6];
         private static bool[] Tests = new bool[6];
@@ -246,7 +247,7 @@ namespace RobofestApp.Pages
             var ip = "localhost";
             if (hubConnection == null || hubConnection.State != HubConnectionState.Connected)
             {
-                hubConnection = new HubConnectionBuilder().WithUrl($"http://robofest.daviadoprojects.codes/scoreHub").Build();
+                hubConnection = new HubConnectionBuilder().WithUrl($"http://24.35.25.72:80/scoreHub").Build();
             }
 
             hubConnection.On<int[], string[], int[], bool[], bool[], bool[]>("fieldDefaults", (teamids, teamnumbers, rounds, reruns, tests, validate) =>
@@ -398,7 +399,7 @@ namespace RobofestApp.Pages
         {
             try
             {
-                await hubConnection.InvokeAsync("judgeClientConnection", 1);
+                await hubConnection.InvokeAsync("judgeClientConnection", CompID);
             }
             catch (Exception ex)
             {
