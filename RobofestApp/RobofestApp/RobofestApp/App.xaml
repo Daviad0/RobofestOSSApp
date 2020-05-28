@@ -8,8 +8,8 @@
     <Application.Resources>
         <ResourceDictionary>
             <OnPlatform x:TypeArguments="x:String" x:Key="IconFont">
-                <On Platform="Android" Value="icofont.ttf#icofont" />
-                <On Platform="iOS" Value="icofont" />
+                <On Platform="Android" Value="icofont.ttf#IcoFont" />
+                <On Platform="iOS" Value="IcoFont" />
             </OnPlatform>
             <OnPlatform x:TypeArguments="x:String" x:Key="RubikLight">
                 <On Platform="Android" Value="Rubik-Light.ttf#Rubik Light" />
