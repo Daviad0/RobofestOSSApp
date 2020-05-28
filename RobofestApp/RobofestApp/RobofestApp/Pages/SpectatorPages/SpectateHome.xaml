@@ -6,9 +6,10 @@
              mc:Ignorable="d"
              x:Class="RobofestApp.Pages.SpectatorPages.SpectateHome"
             NavigationPage.HasBackButton="False"
-            NavigationPage.HasNavigationBar="False">
+            NavigationPage.HasNavigationBar="False"
+            CurrentPageChanged="TabbedPage_CurrentPageChanged">
   <!--Pages can be added as references or inline-->
-    <ContentPage Title="Rankings" >
+    <ContentPage Title="Rankings" ClassId="rankings">
         <StackLayout>
             <ListView x:Name="RankList"
                       IsPullToRefreshEnabled="False"
@@ -52,6 +53,7 @@
                                            Grid.Row="1"
                                            Grid.Column="0"/>
                                 </Grid>
+                                
 
                             </Grid>
                         </ViewCell>
@@ -60,8 +62,63 @@
             </ListView>
         </StackLayout>
     </ContentPage>
-    <ContentPage Title="Up Now" >
-        <Label Text="Teams Up Now"/>
+    <ContentPage Title="Up Now" ClassId="upnow">
+        <StackLayout>
+            <ListView x:Name="UpNowList"
+                      IsPullToRefreshEnabled="False"
+                      ItemsSource="{Binding Teams}"
+                      CachingStrategy="RecycleElement"
+                      RowHeight="60"
+                      SelectionMode="None">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+
+                            <Grid Margin="8" ClassId="{Binding Field, StringFormat='{0}_spectate'}">
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                                </Grid.GestureRecognizers>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Text="{Binding Field, StringFormat='Field {0}'}"
+                                       HorizontalOptions="End"
+                                       VerticalOptions="Center"
+                                       Grid.Row="0"
+                                       Grid.Column="0"
+                                       FontSize="Large"
+                                       Margin="10,0,15,0"
+                                       FontAttributes="Bold"/>
+                                <Grid Grid.Row="0" Grid.Column="1" HorizontalOptions="Start">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text="{Binding TeamNumber}"
+                                           FontAttributes="Bold"
+                                           Grid.Row="0"
+                                           Grid.Column="0"/>
+                                    <Label Text="{Binding Round, StringFormat='Round {0}'}"
+                                           Grid.Row="1"
+                                           Grid.Column="0"/>
+                                </Grid>
+                                <Label Grid.Row="0" Grid.Column="2" HorizontalOptions="End" VerticalOptions="Center" Text="&#xea69;" FontFamily="{StaticResource IconFont}" >
+                                    
+                                </Label>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
     </ContentPage>
     <ContentPage Title="Settings" >
         <StackLayout>

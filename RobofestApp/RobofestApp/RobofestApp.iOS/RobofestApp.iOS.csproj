@@ -77,6 +77,9 @@
     <BundleResource Include="Resources\fa5regular.otf" />
     <BundleResource Include="Resources\fa5solid.otf" />
     <BundleResource Include="Resources\icofont.ttf" />
+    <BundleResource Include="Resources\Rubik-Regular.ttf" />
+    <BundleResource Include="Resources\Rubik-Light.ttf" />
+    <BundleResource Include="Resources\Rubik-Medium.ttf" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\bottleneg.png.imageset\bottleneg.png">

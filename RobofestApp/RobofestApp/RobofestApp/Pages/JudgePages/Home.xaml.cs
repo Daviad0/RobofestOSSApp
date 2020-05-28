@@ -106,7 +106,7 @@ namespace RobofestApp.Pages
                 try
                 {
                     await hubConnection.StartAsync();
-
+                    await hubConnection.InvokeAsync("initializeClient", CompID);
                 }
                 catch (Exception ex)
                 {

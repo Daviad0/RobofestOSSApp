@@ -11,6 +11,18 @@
                 <On Platform="Android" Value="icofont.ttf#icofont" />
                 <On Platform="iOS" Value="icofont" />
             </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="RubikLight">
+                <On Platform="Android" Value="Rubik-Light.ttf#Rubik Light" />
+                <On Platform="iOS" Value="Rubik-Light" />
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="RubikMedium">
+                <On Platform="Android" Value="Rubik-Medium.ttf#Rubik Medium" />
+                <On Platform="iOS" Value="Rubik-Medium" />
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="RubikRegular">
+                <On Platform="Android" Value="Rubik-Regular.ttf#Rubik Regular" />
+                <On Platform="iOS" Value="Rubik-Regular" />
+            </OnPlatform>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

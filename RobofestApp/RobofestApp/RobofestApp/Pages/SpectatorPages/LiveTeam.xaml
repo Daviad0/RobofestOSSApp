@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="RobofestApp.Pages.SpectatorPages.LiveTeam"
+             Title="Field 1 Up Now: 1001-1">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Total Score: 0" VerticalOptions="Start" Margin="0,10,0,0" FontSize="Medium" x:Name="totalScore" HorizontalOptions="Center"/>
+            <Label Text="Currently Scoring..." VerticalOptions="Start" Margin="0,10,0,0" FontSize="Medium" FontAttributes="Bold" x:Name="fieldStatus" HorizontalOptions="Center"/>
+            <StackLayout VerticalOptions="Center">
+                <Grid Margin="30,0,30,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="100"/>
+                        <RowDefinition Height="40"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="bottlereg.png" Grid.Row="0" Grid.Column="0" Margin="5,0,5,0" VerticalOptions="Start" x:Name="bot1img"/>
+                    <Image Source="bottlereg.png" Grid.Row="0" Grid.Column="1" Margin="5,0,5,0" VerticalOptions="Start" x:Name="bot2img"/>
+                    <Image Source="bottlereg.png" Grid.Row="0" Grid.Column="2" Margin="5,0,5,0" VerticalOptions="Start" x:Name="bot5img"/>
+                    <Image Source="bottlereg.png" Grid.Row="0" Grid.Column="3" Margin="5,0,5,0" VerticalOptions="Start" x:Name="bot3img"/>
+                    <Image Source="bottlereg.png" Grid.Row="0" Grid.Column="4" Margin="5,0,5,0" VerticalOptions="Start" x:Name="bot4img"/>
+                    <Label Text="0" Grid.Row="1" Grid.Column="0" FontAttributes="Italic" HorizontalOptions="Center" FontSize="Large" VerticalTextAlignment="Start" x:Name="bot1score"/>
+                    <Label Text="0" Grid.Row="1" Grid.Column="1" FontAttributes="Italic" HorizontalOptions="Center" FontSize="Large" VerticalTextAlignment="Start" x:Name="bot2score"/>
+                    <Label Text="0" Grid.Row="1" Grid.Column="2" FontAttributes="Italic" HorizontalOptions="Center" FontSize="Large" VerticalTextAlignment="Start" x:Name="bot5score"/>
+                    <Label Text="0" Grid.Row="1" Grid.Column="3" FontAttributes="Italic" HorizontalOptions="Center" FontSize="Large" VerticalTextAlignment="Start" x:Name="bot3score"/>
+                    <Label Text="0" Grid.Row="1" Grid.Column="4" FontAttributes="Italic" HorizontalOptions="Center" FontSize="Large" VerticalTextAlignment="Start" x:Name="bot4score"/>
+                </Grid>
+                <Grid Margin="30,0,30,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Row="0" Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Text="White Balls:" Grid.Row="0" Grid.Column="0" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Margin="0,0,10,0" FontSize="Medium"/>
+                        <Image Source="whiteno.png" Grid.Row="0" Grid.Column="1" x:Name="whiteb1"/>
+                        <Image Source="whiteno.png" Grid.Row="0" Grid.Column="2" x:Name="whiteb2"/>
+                        <Image Source="whiteno.png" Grid.Row="0" Grid.Column="3" x:Name="whiteb3"/>
+                        <Label Text="0" FontSize="Medium" Grid.Row="0" Grid.Column="4" TextColor="Gray" FontAttributes="Bold" x:Name="numWhite" VerticalOptions="Center"/>
+                    </Grid>
+                    <Grid Grid.Row="1" Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Text="Colored Balls:" Grid.Row="0" Grid.Column="0" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Margin="0,0,10,0" FontSize="Medium"/>
+                        <Image Source="orangeno.png" Grid.Row="0" Grid.Column="1" x:Name="orangeb1"/>
+                        <Image Source="orangeno.png" Grid.Row="0" Grid.Column="2" x:Name="orangeb2"/>
+                        <Label Text="0" FontSize="Medium" Grid.Row="0" Grid.Column="3" TextColor="DarkOrange" FontAttributes="Bold" x:Name="numOrange" VerticalOptions="Center"/>
+                    </Grid>
+                    <Grid Grid.Row="2" Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Text="Invalid Balls:" Grid.Row="0" Grid.Column="0" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Margin="0,0,10,0" FontSize="Medium"/>
+                        <Image Source="invalidno.png" Grid.Row="0" Grid.Column="1" x:Name="invalidb1"/>
+                        <Image Source="invalidno.png" Grid.Row="0" Grid.Column="2" x:Name="invalidb2"/>
+                        <Image Source="invalidno.png" Grid.Row="0" Grid.Column="3" x:Name="invalidb3"/>
+                        <Image Source="invalidno.png" Grid.Row="0" Grid.Column="4" x:Name="invalidb4"/>
+                        <Image Source="invalidno.png" Grid.Row="0" Grid.Column="5" x:Name="invalidb5"/>
+                    </Grid>
+                </Grid>
+                <Grid Margin="30,10,30,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Frame BorderColor="Gray" CornerRadius="4" HeightRequest="20" Grid.Column="0" Margin="10,0,10,0" BackgroundColor="Gray" x:Name="robotIntact">
+                        <Label Text="INTACT" Padding="0" HorizontalOptions="Center" FontAttributes="Bold" TextColor="White"/>
+                    </Frame>
+                    <Frame BorderColor="Gray" CornerRadius="4" HeightRequest="20" Grid.Column="1" Margin="10,0,10,0" BackgroundColor="Gray" x:Name="endgame">
+                        <Label Text="ENDGAME" Padding="0" HorizontalOptions="Center" FontAttributes="Bold" TextColor="White"/>
+                    </Frame>
+                </Grid>
+            </StackLayout>
+            
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

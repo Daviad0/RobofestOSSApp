@@ -461,7 +461,14 @@ namespace RobofestApp
             {
                 ConnectionTested = true;
             });
-            
+            hubConnection.On<int>("getPong", async (field) =>
+            {
+                if(field == CurrentField || field == 7)
+                {
+                    await hubConnection.InvokeAsync("pong", CurrentField, "RobofestApp Authorized User", CompID);
+                }
+            });
+
 
         }
         async Task SignalRConnect()
@@ -472,7 +479,7 @@ namespace RobofestApp
                 try
                 {
                     await hubConnection.StartAsync();
-
+                    await hubConnection.InvokeAsync("initializeClient", CompID);
                 }
                 catch (Exception ex)
                 {

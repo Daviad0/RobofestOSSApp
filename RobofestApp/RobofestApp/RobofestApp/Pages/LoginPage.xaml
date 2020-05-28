@@ -11,7 +11,7 @@
     <ContentPage.Content>
         <StackLayout VerticalOptions="Center">
             <StackLayout VerticalOptions="Center" x:Name="LoginPending">
-                <Label Text="Login" x:Name="StatusLabel" FontSize="60" Margin="13, 0, 0, 0"/>
+                <Label Text="Login" x:Name="StatusLabel" FontSize="60" Margin="13, 0, 0, 0" FontFamily="{StaticResource RubikMedium}"/>
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="50"/>
@@ -24,7 +24,7 @@
                     <Entry Placeholder="Username"
                        x:Name="LoginUsername"
                        IsSpellCheckEnabled="False"
-                       IsTextPredictionEnabled="False" TextChanged="Form_TextChanged" TextColor="DodgerBlue" HeightRequest="50" Grid.Column="1" Margin="0,0,20,0"/>
+                       IsTextPredictionEnabled="False" TextChanged="Form_TextChanged" TextColor="DodgerBlue" HeightRequest="50" Grid.Column="1" Margin="0,0,20,0" FontFamily="{StaticResource RubikRegular}"/>
                 </Grid>
                 <Grid>
                     <Grid.RowDefinitions>
@@ -39,7 +39,7 @@
                        x:Name="LoginPassword"
                        IsPassword="True"
                        IsSpellCheckEnabled="False"
-                       IsTextPredictionEnabled="False" TextChanged="Form_TextChanged" TextColor="DodgerBlue" HeightRequest="50" Grid.Column="1" Margin="0,0,20,0"/>
+                       IsTextPredictionEnabled="False" TextChanged="Form_TextChanged" TextColor="DodgerBlue" HeightRequest="50" Grid.Column="1" Margin="0,0,20,0" FontFamily="{StaticResource RubikRegular}"/>
                 </Grid>
                 <Grid>
                     <Grid.RowDefinitions>
@@ -50,7 +50,7 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Label Text="&#xeec8;" FontFamily="{StaticResource IconFont}" Grid.Column="0" VerticalOptions="Center" FontSize="20" Margin="10,5,0,0" HorizontalTextAlignment="Center"/>
-                    <Picker ItemsSource="{Binding Comps}" ItemDisplayBinding="{Binding Location}" Margin="0,0,20,0" Title="Select Your Competition" x:Name="locationPicker" HeightRequest="50" SelectedIndexChanged="locationPicker_SelectedIndexChanged" FontAttributes="Bold" Grid.Column="1"/>
+                    <Picker ItemsSource="{Binding Comps}" ItemDisplayBinding="{Binding Location}" Margin="0,0,20,0" Title="Select Your Competition" x:Name="locationPicker" HeightRequest="50" SelectedIndexChanged="locationPicker_SelectedIndexChanged" FontAttributes="Bold" Grid.Column="1" FontFamily="{StaticResource RubikMedium}"/>
                 </Grid>
                 
                 
@@ -60,7 +60,7 @@
                 
                 <Button
                     Clicked="autoLogin_Clicked"
-                    Text="Automatically Login" Margin="20,10,20,5" x:Name="autoLogin"/>
+                    Text="Automatically Login" Margin="20,10,20,5" x:Name="autoLogin" IsEnabled="False"/>
                 <Button
                     Clicked="spectate_Clicked"
                     Text="Spectator Mode" Margin="20,0,20,40" x:Name="spectate"/>

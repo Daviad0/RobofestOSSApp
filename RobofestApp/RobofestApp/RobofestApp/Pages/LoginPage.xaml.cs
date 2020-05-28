@@ -20,6 +20,7 @@ namespace RobofestApp.Pages
     {
         private static CompetitionModel[] competitionList = new CompetitionModel[1];
         private CompetitionViewModel compViewModel = new CompetitionViewModel();
+        private int compid;
         HubConnection hubConnection;
 
         public LoginPage()
@@ -82,6 +83,11 @@ namespace RobofestApp.Pages
                 LoginPassword.TextColor = (Color)converter.ConvertFromInvariantString("Color.Red");
                 LoginUsername.TextColor = (Color)converter.ConvertFromInvariantString("Color.Red");
             });
+            hubConnection.On("authRoleFail", () =>
+            {
+                LoginPassword.TextColor = (Color)converter.ConvertFromInvariantString("Color.Yellow");
+                LoginUsername.TextColor = (Color)converter.ConvertFromInvariantString("Color.Yellow");
+            });
             hubConnection.On("authAccept", () =>
             {
                 ProgressLogin.ProgressTo(0.1, 1000, Easing.SinOut);
@@ -109,7 +115,7 @@ namespace RobofestApp.Pages
         {
             try
             {
-                await hubConnection.InvokeAsync("appLogin", LoginUsername.Text, LoginPassword.Text);
+                await hubConnection.InvokeAsync("appLogin", LoginUsername.Text, LoginPassword.Text, compid);
             }
             catch (Exception ex)
             {
@@ -139,8 +145,9 @@ namespace RobofestApp.Pages
 
         private async void locationPicker_SelectedIndexChanged(object sender, EventArgs e)
         {
+            autoLogin.IsEnabled = true;
             Application.Current.Properties["currentCompID"] = competitionList[locationPicker.SelectedIndex].CompID;
-            
+            compid = competitionList[locationPicker.SelectedIndex].CompID;
         }
     }
 }
