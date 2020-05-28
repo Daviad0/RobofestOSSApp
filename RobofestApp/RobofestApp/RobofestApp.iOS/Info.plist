@@ -49,5 +49,12 @@
 		<string>remote-notification</string>
 		<string>processing</string>
 	</array>
+  <key>UIAppFonts</key>
+  <array>
+    <string>Rubik-Light.ttf</string>
+    <string>Rubik-Medium.ttf</string>
+    <string>Rubik-Regular.ttf</string>
+    <string>icofont.ttf</string>
+  </array>
 </dict>
 </plist>
