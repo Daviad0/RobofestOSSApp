@@ -204,18 +204,18 @@ namespace RobofestApp.Pages
             if (sender == r1select)
             {
                 Round = 1;
-                r1select.BackgroundColor = (Color)converter.ConvertFromInvariantString("Color.DodgerBlue");
+                r1select.BackgroundColor = (Color)converter.ConvertFromInvariantString("#0a6cf5");
                 r2select.BackgroundColor = (Color)converter.ConvertFromInvariantString("#ffffff");
                 r1select.TextColor = (Color)converter.ConvertFromInvariantString("#ffffff");
-                r2select.TextColor = (Color)converter.ConvertFromInvariantString("Color.DodgerBlue");
+                r2select.TextColor = (Color)converter.ConvertFromInvariantString("#0a6cf5");
             }
             else
             {
                 Round = 2;
-                r2select.BackgroundColor = (Color)converter.ConvertFromInvariantString("Color.DodgerBlue");
+                r2select.BackgroundColor = (Color)converter.ConvertFromInvariantString("#0a6cf5");
                 r1select.BackgroundColor = (Color)converter.ConvertFromInvariantString("#ffffff");
                 r2select.TextColor = (Color)converter.ConvertFromInvariantString("#ffffff");
-                r1select.TextColor = (Color)converter.ConvertFromInvariantString("Color.DodgerBlue");
+                r1select.TextColor = (Color)converter.ConvertFromInvariantString("#0a6cf5");
             }
         }
 

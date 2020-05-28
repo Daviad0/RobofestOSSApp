@@ -73,4 +73,7 @@
   <ItemGroup>
     <Folder Include="Fonts\" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Pages\JudgePages\CompetitionManagementPage.xaml.cs" />
+  </ItemGroup>
 </Project>

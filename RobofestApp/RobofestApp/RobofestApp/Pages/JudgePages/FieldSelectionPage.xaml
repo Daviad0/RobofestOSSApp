@@ -10,16 +10,16 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style x:Key="judgePositive" TargetType="Button">
-                <Setter Property="BorderColor" Value="DodgerBlue"/>
+                <Setter Property="BorderColor" Value="#0a6cf5"/>
                 <Setter Property="BackgroundColor" Value="#ffffff"/>
-                <Setter Property="TextColor" Value="DodgerBlue"/>
+                <Setter Property="TextColor" Value="#0a6cf5"/>
                 <Setter Property="BorderWidth" Value="2"/>
                 <Setter Property="FontAttributes" Value="Bold"/>
                 <Setter Property="CornerRadius" Value="5"/>
             </Style>
             <Style x:Key="judgePositiveSelected" TargetType="Button">
-                <Setter Property="BorderColor" Value="DodgerBlue"/>
-                <Setter Property="BackgroundColor" Value="DodgerBlue"/>
+                <Setter Property="BorderColor" Value="#0a6cf5"/>
+                <Setter Property="BackgroundColor" Value="#0a6cf5"/>
                 <Setter Property="TextColor" Value="#ffffff"/>
                 <Setter Property="BorderWidth" Value="2"/>
                 <Setter Property="FontAttributes" Value="Bold"/>
