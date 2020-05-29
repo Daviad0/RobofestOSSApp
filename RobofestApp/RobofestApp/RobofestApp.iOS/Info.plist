@@ -56,5 +56,7 @@
     <string>Rubik-Regular.ttf</string>
     <string>icofont.ttf</string>
   </array>
+  <key>FirebaseAppDelegateProxyEnabled</key>
+  <false/>
 </dict>
 </plist>

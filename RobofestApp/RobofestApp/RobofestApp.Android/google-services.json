@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "268942655075",
+    "firebase_url": "https://robofestossapp.firebaseio.com",
+    "project_id": "robofestossapp",
+    "storage_bucket": "robofestossapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:268942655075:android:85e8c297ce2b7153298256",
+        "android_client_info": {
+          "package_name": "com.RobofestOSSService.robofestapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "268942655075-cflont44d1ien3igjksht5jaqsb9o94r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmXEj_eVH6K2jmE9GA2HbkleDp6bxfBnY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "268942655075-cflont44d1ien3igjksht5jaqsb9o94r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

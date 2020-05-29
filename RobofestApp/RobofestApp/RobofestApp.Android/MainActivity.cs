@@ -8,6 +8,9 @@ using Android.Widget;
 using Android.OS;
 using Android;
 using Android.Support.V4.App;
+using Plugin.FirebasePushNotification;
+using Android.Content;
+using Firebase;
 
 namespace RobofestApp.Droid
 {
@@ -16,15 +19,20 @@ namespace RobofestApp.Droid
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
             Plugin.Iconize.Iconize.Init(Resource.Id.toolbar, Resource.Id.sliding_tabs);
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(savedInstanceState);
 
+            
+            
+
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());
+            
             var permissions = new string[] { Manifest.Permission.ReadExternalStorage, Manifest.Permission.WriteExternalStorage };
             ActivityCompat.RequestPermissions(this, permissions, 1);
         }
@@ -34,5 +42,6 @@ namespace RobofestApp.Droid
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
+        
     }
 }

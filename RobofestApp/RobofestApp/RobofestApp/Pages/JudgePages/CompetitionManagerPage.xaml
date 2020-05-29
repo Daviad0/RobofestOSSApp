@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="RobofestApp.Pages.JudgePages.CompetitionManagerPage"
+             Title="Management">
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid Margin="10,0,10,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                </Grid.RowDefinitions>
+                <BoxView x:Name="f1warning" BackgroundColor="Gray" CornerRadius="20" Grid.Column="0" Margin="3,13,3,13"/>
+                <Label Grid.Column="1" Text="Field 1" VerticalOptions="Center" FontSize="Medium" FontAttributes="Bold" Margin="10,0,0,0"/>
+                <Label x:Name="f1status" Text="READY" FontFamily="{StaticResource RubikMedium}" TextColor="White" BackgroundColor="MediumSeaGreen" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center" FontSize="20" Padding="5"/>
+                <Label Text="&#xef10;" FontFamily="{StaticResource IconFont}" Grid.Column="3" FontSize="25" Padding="5" HorizontalOptions="End" VerticalOptions="Center"/>
+            </Grid>
+            <Grid Margin="10,0,10,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                </Grid.RowDefinitions>
+                <BoxView x:Name="f2warning" BackgroundColor="Gray" CornerRadius="20" Grid.Column="0" Margin="3,13,3,13"/>
+                <Label Grid.Column="1" Text="Field 2" VerticalOptions="Center" FontSize="Medium" FontAttributes="Bold" Margin="10,0,0,0"/>
+                <Label x:Name="f2status" Text="READY" FontFamily="{StaticResource RubikMedium}" TextColor="White" BackgroundColor="MediumSeaGreen" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center" FontSize="20" Padding="5"/>
+                <Label Text="&#xef10;" FontFamily="{StaticResource IconFont}" Grid.Column="3" FontSize="25" Padding="5" HorizontalOptions="End" VerticalOptions="Center"/>
+            </Grid>
+            <Grid Margin="10,0,10,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                </Grid.RowDefinitions>
+                <BoxView x:Name="f3warning" BackgroundColor="Gray" CornerRadius="20" Grid.Column="0" Margin="3,13,3,13"/>
+                <Label Grid.Column="1" Text="Field 3" VerticalOptions="Center" FontSize="Medium" FontAttributes="Bold" Margin="10,0,0,0"/>
+                <Label x:Name="f3status" Text="READY" FontFamily="{StaticResource RubikMedium}" TextColor="White" BackgroundColor="MediumSeaGreen" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center" FontSize="20" Padding="5"/>
+                <Label Text="&#xef10;" FontFamily="{StaticResource IconFont}" Grid.Column="3" FontSize="25" Padding="5" HorizontalOptions="End" VerticalOptions="Center"/>
+            </Grid>
+            <Grid Margin="10,0,10,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                </Grid.RowDefinitions>
+                <BoxView x:Name="f4warning" BackgroundColor="Gray" CornerRadius="20" Grid.Column="0" Margin="3,13,3,13"/>
+                <Label Grid.Column="1" Text="Field 4" VerticalOptions="Center" FontSize="Medium" FontAttributes="Bold" Margin="10,0,0,0"/>
+                <Label x:Name="f4status" Text="READY" FontFamily="{StaticResource RubikMedium}" TextColor="White" BackgroundColor="MediumSeaGreen" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center" FontSize="20" Padding="5"/>
+                <Label Text="&#xef10;" FontFamily="{StaticResource IconFont}" Grid.Column="3" FontSize="25" Padding="5" HorizontalOptions="End" VerticalOptions="Center"/>
+            </Grid>
+            <Grid Margin="10,0,10,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                </Grid.RowDefinitions>
+                <BoxView x:Name="f5warning" BackgroundColor="Gray" CornerRadius="20" Grid.Column="0" Margin="3,13,3,13"/>
+                <Label Grid.Column="1" Text="Field 5" VerticalOptions="Center" FontSize="Medium" FontAttributes="Bold" Margin="10,0,0,0"/>
+                <Label x:Name="f5status" Text="READY" FontFamily="{StaticResource RubikMedium}" TextColor="White" BackgroundColor="MediumSeaGreen" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center" FontSize="20" Padding="5"/>
+                <Label Text="&#xef10;" FontFamily="{StaticResource IconFont}" Grid.Column="3" FontSize="25" Padding="5" HorizontalOptions="End" VerticalOptions="Center"/>
+            </Grid>
+            <Grid Margin="10,0,10,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                </Grid.RowDefinitions>
+                <BoxView x:Name="f6warning" BackgroundColor="Gray" CornerRadius="20" Grid.Column="0" Margin="3,13,3,13"/>
+                <Label Grid.Column="1" Text="Field 6" VerticalOptions="Center" FontSize="Medium" FontAttributes="Bold" Margin="10,0,0,0"/>
+                <Label x:Name="f6status" Text="READY" FontFamily="{StaticResource RubikMedium}" TextColor="White" BackgroundColor="MediumSeaGreen" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center" FontSize="20" Padding="5"/>
+                <Label Text="&#xef10;" FontFamily="{StaticResource IconFont}" Grid.Column="3" FontSize="25" Padding="5" HorizontalOptions="End" VerticalOptions="Center"/>
+            </Grid>
+            <Button Clicked="Button_Clicked" Text="Overlay"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

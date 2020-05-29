@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Foundation;
+using Plugin.FirebasePushNotification;
 using UIKit;
 
 namespace RobofestApp.iOS
@@ -22,14 +23,15 @@ namespace RobofestApp.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
+            Rg.Plugins.Popup.Popup.Init();
             UIColor color = UIColor.FromRGB(10, 108, 245);
             UINavigationBar.Appearance.SetTitleTextAttributes(new UITextAttributes() { TextColor = UIColor.White });
             UINavigationBar.Appearance.TintColor = UIColor.White;
             UINavigationBar.Appearance.BarTintColor = color;
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
-
             return base.FinishedLaunching(app, options);
         }
+        
     }
 }
